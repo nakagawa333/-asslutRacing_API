@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.assolutoRacing.Mapper.CarsMapper">
+  <select id="selectAll" resultMap="selectCarsDto">
+    select 
+    car_name,
+    car_id,
+    maker_id
+    from car;
+  </select>
+  
+  <resultMap id="selectCarsDto" type="com.example.assolutoRacing.Dto.selectCarsDto">
+    <result column="car_name"  property="carName"></result>
+    <result column="car_id" property="carId"></result>
+    <result column="maker_id" property="makerId"></result>
+  </resultMap>
+</mapper>

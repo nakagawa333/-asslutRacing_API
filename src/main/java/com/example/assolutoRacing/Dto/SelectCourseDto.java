@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class selectCarsDto {
-	public String carName;
-	public Integer carId;
-	public Integer makerId;
+public class SelectCourseDto {
+	public String courseName;
+	public Integer courseId;
 }
+

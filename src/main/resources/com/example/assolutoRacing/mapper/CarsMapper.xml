@@ -12,7 +12,7 @@
     from car;
   </select>
   
-  <resultMap id="selectCarsDto" type="com.example.assolutoRacing.Dto.selectCarsDto">
+  <resultMap id="selectCarsDto" type="com.example.assolutoRacing.Dto.SelectCarsDto">
     <result column="car_name"  property="carName"></result>
     <result column="car_id" property="carId"></result>
     <result column="maker_id" property="makerId"></result>

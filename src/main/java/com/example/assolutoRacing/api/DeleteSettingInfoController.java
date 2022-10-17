@@ -13,18 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Service.DeleteSettingInfoService;
 
+import lombok.Data;
+import lombok.NonNull;
+
 @CrossOrigin(origins = Constants.ORIGINS)
 @RestController
 public class DeleteSettingInfoController {
 	@Autowired
 	DeleteSettingInfoService deleteSettingInfoService;
 	
-	@RequestMapping(path = "/delete", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> delete(@RequestBody(required = false) int id) {
+	@RequestMapping(path = "/delete", method = RequestMethod.PUT)
+	public ResponseEntity<Integer> delete(@RequestBody(required = true) Request req) {
 		int deleteCount = 0;
 		
 		try {
-			deleteCount = deleteSettingInfoService.deleteOne(id);
+			deleteCount = deleteSettingInfoService.deleteOne(req.getId());
 		} catch(Exception e) {
 			throw e;
 		}
@@ -32,5 +35,10 @@ public class DeleteSettingInfoController {
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<Integer> resEntity = new ResponseEntity<>(deleteCount,headers,HttpStatus.CREATED);
 		return resEntity;
+	}
+	
+;	@Data
+    public static class Request{
+		public int id;
 	}
 }

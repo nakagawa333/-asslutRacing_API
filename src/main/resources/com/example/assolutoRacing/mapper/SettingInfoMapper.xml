@@ -13,7 +13,7 @@
      <result column="maker_id" property="makerId"></result>
      <result column="course_id" property="courseId"></result>
      <result column="course_name" property="course"></result>
-     <result column="asb" property="abs"></result>
+     <result column="abs" property="abs"></result>
      <result column="power_steering" property="powerSteering"></result>
      <result column="diffgear" property="diffgear"></result>
      <result column="frontTire_pressure" property="frontTirePressure"></result>
@@ -47,7 +47,7 @@
 		    si.maker_id,
 		    si.course_id,
 		    si.car_id,
-		    si.asb,
+		    si.abs,
 		    si.power_steering,
 		    si.diffgear,
 		    si.frontTire_pressure,

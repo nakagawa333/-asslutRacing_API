@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  * 登録用設定情報格納クラス
  */
 @Data
-public class SettingInfoBean{
+public class AddSettingInfoBean{
 	//タイトル
 	@NotBlank
 	@Size(max=100,min=1,message="タイトルの見直しをお願い致します。")

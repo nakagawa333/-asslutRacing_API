@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.assolutoRacing.Bean.SettingInfoBean;
+import com.example.assolutoRacing.Bean.AddSettingInfoBean;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Service.SettingInfoService;
 
@@ -28,7 +28,7 @@ public class AddSettingInfoController {
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	@Transactional
-	public ResponseEntity<Integer> add(@RequestBody(required = true) SettingInfoBean settingInfo) {
+	public ResponseEntity<Integer> add(@RequestBody(required = true) AddSettingInfoBean settingInfo) {
 		int insertCount = 0;
 		
 		try {

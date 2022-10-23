@@ -3,7 +3,7 @@ package com.example.assolutoRacing.Mapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.assolutoRacing.Bean.SettingInfoBean;
+import com.example.assolutoRacing.Bean.AddSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 
 @Mapper
@@ -33,5 +33,5 @@ public interface SettingInfoMapper{
 	 * @param settingInfo 
 	 * @return 登録件数
 	 */
-	Integer insert(SettingInfoBean settingInfo);
+	Integer insert(AddSettingInfoBean settingInfo);
 }

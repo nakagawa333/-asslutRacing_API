@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.assolutoRacing.Bean.SettingInfoBean;
+import com.example.assolutoRacing.Bean.AddSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Mapper.SettingInfoMapper;
 
@@ -54,7 +54,7 @@ public class SettingInfoService {
 	 * @param settingInfo  登録用設定情報格納クラス
 	 * @return 登録件数
 	 */
-	public Integer insert(SettingInfoBean settingInfo) {
+	public Integer insert(AddSettingInfoBean settingInfo) {
 		int insertCount = 0;
 		try {
 			insertCount = settingInfoMapper.insert(settingInfo);

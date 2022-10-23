@@ -57,7 +57,7 @@ public class SettingInfoService {
 	public Integer insert(SettingInfoBean settingInfo) {
 		int insertCount = 0;
 		try {
-			insertCount = settingInfoMapper.insert(null);
+			insertCount = settingInfoMapper.insert(settingInfo);
 		} catch(Exception e) {
 			throw e;
 		}

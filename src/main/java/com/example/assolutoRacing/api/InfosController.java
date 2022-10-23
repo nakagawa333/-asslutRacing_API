@@ -18,6 +18,7 @@ import com.example.assolutoRacing.Dto.SelectCarsDto;
 import com.example.assolutoRacing.Dto.SelectCourseDto;
 import com.example.assolutoRacing.Service.InfosService;
 import com.example.assolutoRacing.Dto.SelectMakerDto;
+import com.example.assolutoRacing.Dto.SelectTireTypeDto;
 
 @CrossOrigin(origins = Constants.ORIGINS)
 @RestController
@@ -34,6 +35,8 @@ public class InfosController {
 		List<SelectCourseDto> courseList = new ArrayList<>();
 		//メーカー一覧
 		List<SelectMakerDto> makerList = new ArrayList<>();
+		//タイヤの種類一覧
+		List<SelectTireTypeDto> tireTypeList = new ArrayList<>();
 		
 		try {
 			carsList = infosService.selectCarsAll();
@@ -53,10 +56,17 @@ public class InfosController {
 			throw e;
 		}
 		
+		try {
+			tireTypeList = infosService.selectTireTypeAll();
+		} catch(Exception e) {
+			throw e;
+		}
+		
 		InfosBean infosBean = new InfosBean();
 		infosBean.setCarsList(carsList);
 		infosBean.setCourseList(courseList);
 		infosBean.setMakerList(makerList);
+		infosBean.setTireTypeList(tireTypeList);
 
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<InfosBean> resEntity = new ResponseEntity<>(infosBean,headers,HttpStatus.CREATED); 

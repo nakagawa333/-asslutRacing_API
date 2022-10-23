@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.example.assolutoRacing.Dto.SelectCarsDto;
 import com.example.assolutoRacing.Dto.SelectCourseDto;
 import com.example.assolutoRacing.Dto.SelectMakerDto;
+import com.example.assolutoRacing.Dto.SelectTireTypeDto;
 import com.example.assolutoRacing.Mapper.CarsMapper;
 import com.example.assolutoRacing.Mapper.CourseMapper;
 import com.example.assolutoRacing.Mapper.MakerMapper;
+import com.example.assolutoRacing.Mapper.TireTypeMapper;
 
 @Service
 public class InfosService{
@@ -23,6 +25,9 @@ public class InfosService{
 	
 	@Autowired
 	MakerMapper makerMapper;
+	
+	@Autowired
+	TireTypeMapper tireTypeMapper;
 	
 	/** 車両一覧を取得する */
 	public List<SelectCarsDto> selectCarsAll() {
@@ -59,5 +64,16 @@ public class InfosService{
 			throw e;
 		}
 		return makerList;
+	}
+	
+	/** 車の種類一覧 **/
+	public List<SelectTireTypeDto> selectTireTypeAll(){
+		List<SelectTireTypeDto> tireTypeList = new ArrayList<>();
+		try {
+			tireTypeList = tireTypeMapper.selectAll();
+		} catch(Exception e) {
+			throw e;
+		}
+		return tireTypeList;
 	}
 }

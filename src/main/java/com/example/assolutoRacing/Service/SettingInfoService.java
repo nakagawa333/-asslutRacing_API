@@ -6,14 +6,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.assolutoRacing.Bean.SettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Mapper.SettingInfoMapper;
 
 @Service
-public class HomeService{
+public class SettingInfoService {
 	@Autowired
 	SettingInfoMapper settingInfoMapper;
 	
+	/**
+	 * 該当IDの設定情報を削除する
+	 * @param id
+	 * @return 削除件数
+	 */
+	public Integer deleteOne(int id) {
+		return settingInfoMapper.deleteOne(id);
+	}
+	
+	/**
+	 * 設定情報を全取得する
+	 * @return 設定情報リスト
+	 */
 	public List<SettingInfoDto> selectAll() {
 		List<SettingInfoDto> settingInfoDtoList = new ArrayList<>();
 		
@@ -33,5 +47,20 @@ public class HomeService{
 			}			
 		}
 		return settingInfoDtoList;
+	}
+	
+	/**
+	 * 設定情報を登録する
+	 * @param settingInfo  登録用設定情報格納クラス
+	 * @return 登録件数
+	 */
+	public Integer insert(SettingInfoBean settingInfo) {
+		int insertCount = 0;
+		try {
+			insertCount = settingInfoMapper.insert(null);
+		} catch(Exception e) {
+			throw e;
+		}
+		return insertCount;
 	}
 }

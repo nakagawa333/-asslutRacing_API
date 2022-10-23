@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
-import com.example.assolutoRacing.Service.HomeService;
+import com.example.assolutoRacing.Service.SettingInfoService;
 
 @CrossOrigin(origins = Constants.ORIGINS)
 @RestController
 public class HomeController {
 	@Autowired
-	HomeService homeService;
+	SettingInfoService settingInfoService;
 	
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ResponseEntity<List<SettingInfoDto>> home() {
 		List<SettingInfoDto> settingInfoList = new ArrayList<>();
 		
 		try {
-			settingInfoList = homeService.selectAll();
+			settingInfoList = settingInfoService.selectAll();
 		} catch(Exception e) {
 			throw e;
 		}
@@ -36,4 +36,5 @@ public class HomeController {
 		ResponseEntity<List<SettingInfoDto>> resEntity = new ResponseEntity<>(settingInfoList,headers,HttpStatus.CREATED); 
 		return resEntity;
 	}
+
 }

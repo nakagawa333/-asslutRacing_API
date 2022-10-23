@@ -178,4 +178,89 @@
 		false
 	)
   </insert>
+  
+	<update id="update">
+	    UPDATE
+	        setting_info
+	    <set>
+	       title = #{title},
+	       car_id = #{carId},
+	       maker_id = #{makerId},
+	       course_id = #{courseId},
+	       tire_id = #{tireId},
+	       abs = #{abs},
+	       <if test="powerSteering != null">
+	       power_steering = #{powerSteering},
+	       </if>
+	       <if test="diffgear != null">
+	       diffgear = #{diffgear},
+	       </if>
+	       <if test="frontTirePressure != null">
+	       frontTire_pressure = #{frontTirePressure},
+	       </if>
+	       <if test="rearTirePressure != null">
+	       rearTire_pressure = #{rearTirePressure},
+	       </if>
+	       <if test="airPressure != null">
+	       air_pressure = #{airPressure},
+	       </if>
+	       <if test="gearFinal != null">
+	       gear_final = #{gearFinal},
+	       </if>
+	       <if test="gearOne != null">
+	       gear_one = #{gearOne},
+	       </if>
+	       <if test="gearTwo != null">
+	       gear_two = #{gearTwo},
+	       </if>
+	       <if test="gearThree != null">
+	       gear_three = #{gearThree},
+	       </if>
+	       <if test="gearFour != null">
+	       gear_four = #{gearFour},
+	       </if>
+	       <if test="gearFive != null">
+	       gear_five = #{gearFive},
+	       </if>
+	       <if test="stabiliserAgo != null">
+	       stabiliser_ago = #{stabiliserAgo},
+	       </if>
+	       <if test="stabiliserAfter != null">
+	       stabiliser_after = #{stabiliserAfter},
+	       </if>
+	       <if test="maxRudderAngle != null">
+	       max_rudder_angle = #{maxRudderAngle},
+	       </if>
+	       <if test="ackermannAngle != null">	
+	       ackermann_angle = #{ackermannAngle},
+	       </if>
+	       <if test="camberAgo != null">
+	       camber_ago = #{camberAgo},
+	       </if>
+	       <if test="camberAfter != null">
+	       camber_after = #{camberAfter},
+	       </if>
+	       <if test="breakPower != null">
+	       break_power = #{breakPower},
+	       </if>
+	       <if test="breakBallance != null">
+	       break_ballance = #{breakBallance},
+	       </if>
+	       <if test="carHigh != null">
+	       car_high = #{carHigh},
+	       </if>
+	       <if test="offset != null">
+	       off_set = #{offset},
+	       </if>
+	       <if test="hoilesize != null">
+	       hoilesize = #{hoilesize},
+	       </if>
+	       <if test="memo != null">
+	       memo = #{memo}
+	       </if>
+	     </set>
+	    <where>
+	        id = #{id}
+	    </where>
+	</update>
 </mapper>

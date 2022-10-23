@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.assolutoRacing.Bean.AddSettingInfoBean;
+import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 
 @Mapper
@@ -30,8 +31,15 @@ public interface SettingInfoMapper{
 	
 	/**
 	 * 設定情報を登録する
-	 * @param settingInfo 
+	 * @param settingInfo 登録用設定情報格納クラス
 	 * @return 登録件数
 	 */
 	Integer insert(AddSettingInfoBean settingInfo);
+
+	/**
+	 * 
+	 * @param settingInfo 更新用設定情報格納クラス
+	 * @return　更新件数
+	 */
+	Integer update(UpdateSettingInfoBean settingInfo);
 }

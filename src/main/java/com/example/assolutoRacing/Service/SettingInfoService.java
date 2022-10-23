@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.assolutoRacing.Bean.AddSettingInfoBean;
+import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Mapper.SettingInfoMapper;
 
@@ -62,5 +63,20 @@ public class SettingInfoService {
 			throw e;
 		}
 		return insertCount;
+	}
+	
+	/**
+	 * 設定情報を更新する
+	 * @param settingInfo  登録用設定情報格納クラス
+	 * @return 更新件数
+	 */
+	public Integer update(UpdateSettingInfoBean settingInfo) {
+		int updateCount = 0;
+		try {
+			updateCount = settingInfoMapper.update(settingInfo);
+		} catch(Exception e) {
+			throw e;
+		}
+		return updateCount;
 	}
 }

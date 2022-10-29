@@ -23,7 +23,6 @@ public class HomeController {
 	SettingInfoService settingInfoService;
 	
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	@Transactional
 	public ResponseEntity<List<SettingInfoDto>> home() {
 		List<SettingInfoDto> settingInfoList = new ArrayList<>();
 		

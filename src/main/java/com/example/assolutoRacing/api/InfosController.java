@@ -27,7 +27,6 @@ public class InfosController {
 	InfosService infosService;
 	
 	@RequestMapping(path = "/infos", method = RequestMethod.GET)
-	@Transactional
 	public ResponseEntity<InfosBean> infos() {
 		//車一覧
 		List<SelectCarsDto> carsList = new ArrayList<>();

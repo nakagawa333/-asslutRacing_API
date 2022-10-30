@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,15 +23,14 @@ import com.example.assolutoRacing.Service.SettingInfoService;
  */
 @CrossOrigin(origins = Constants.ORIGINS)
 @RestController
-public class AddSettingInfoController {	
+public class AddSettingInfoController{
 	@Autowired
 	SettingInfoService settingInfoService;
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	@Transactional
-	public ResponseEntity<Integer> add(@RequestBody(required = true) AddSettingInfoBean settingInfo) {
+	public ResponseEntity<Integer> add(@RequestBody(required = true) @Validated AddSettingInfoBean settingInfo) {
 		int insertCount = 0;
-		
 		try {
 			insertCount = settingInfoService.insert(settingInfo);
 		} catch(Exception e) {

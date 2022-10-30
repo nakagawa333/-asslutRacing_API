@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 public class AddSettingInfoBean{
 	//タイトル
 	@NotBlank
-	@Size(max=100,min=1,message="タイトルの見直しをお願い致します。")
+	@Size(max=100,min=1,message="タイトルは1文字以上100文字以下でお願い致します")
 	public String title;
 	//車id
 	@NotNull
@@ -77,6 +77,6 @@ public class AddSettingInfoBean{
 	//ホイールサイズ
 	public BigDecimal hoilesize;
 	//メモ
-	@Size(max=700,message="メモの最大文字数を越えています。")
+	@Size(max=700,message="メモは、700文字以内でお願い致します")
 	public String memo;
 }

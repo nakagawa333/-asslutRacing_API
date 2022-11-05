@@ -4,44 +4,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.codec.digest.DigestUtils;
+
+import com.example.assolutoRacing.Bean.AuthUserBean;
 import com.example.assolutoRacing.Constants.Constants;
+import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Service.UserService;
 
 /**
  * 
  * @author nakagawa.so
- * ユーザー名によるユーザー情報検索コントローラークラス
+ * ユーザー登録情報コントローラークラス
  *
  */
 @CrossOrigin(origins = Constants.ORIGINS)
 @RestController
-public class SelectUserController {
+public class AuthUserController {
 	
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(path = "/auth/user/", method = RequestMethod.GET)
-	@Transactional
-	public ResponseEntity<Integer> authUser(@PathVariable String userName){
+	@RequestMapping(path = "/auth/user", method = RequestMethod.POST)
+	public ResponseEntity<Integer> authUser(@RequestBody(required = true) @Validated AuthUserBean authUserBean){
 		int userCount = 0;
 		
-		if(StringUtils.isEmpty(userName)) {
-			throw new NullPointerException();
-		}
+		String password = DigestUtils.sha1Hex(authUserBean.getPassword());
+		AuthUserDto authUser = new AuthUserDto();
+		authUser.setPassword(password);
+		authUser.setUserName(authUserBean.getUserName());
 		
 		try {
-			userCount = userService.selectUserCountByUserName(userName);
+			userCount = userService.auth(authUser);
 		} catch(Exception e) {
 			throw e;
 		}
-		
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<Integer> resEntity = new ResponseEntity<>(userCount,headers,HttpStatus.CREATED); 
 		return resEntity;

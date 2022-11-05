@@ -29,4 +29,15 @@
    where 
    user_name = #{userName}
   </select>
+  
+  <select id="auth" resultType="Integer">
+    select
+     COUNT(*)
+    from user
+    <where>
+    user_name = #{userName}
+    and 
+    password = #{password}
+    </where>
+  </select>
 </mapper>

@@ -10,13 +10,15 @@
      user_name,
      password,
      create_time,
-     update_time
+     update_time,
+     delete_flag
     )
     values(
      #{userName},
      #{password},
      NOW(),
-     NOW()
+     NOW(),
+     false
     )
   </insert>
 </mapper>

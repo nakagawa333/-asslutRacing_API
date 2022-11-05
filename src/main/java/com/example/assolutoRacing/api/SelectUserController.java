@@ -17,7 +17,7 @@ import com.example.assolutoRacing.Service.UserService;
 /**
  * 
  * @author nakagawa.so
- * ユーザー登録情報コントローラークラス
+ * ユーザー名によるユーザー情報検索コントローラークラス
  *
  */
 @CrossOrigin(origins = Constants.ORIGINS)

@@ -31,7 +31,7 @@ public class UserService {
 	}
 	
 	/**
-	 * ユーザー数をidから取得する
+	 * ユーザー数をユーザー名から取得する
 	 * @return ユーザー件数
 	 */
 	public Integer selectUserCountByUserName(String userName) {

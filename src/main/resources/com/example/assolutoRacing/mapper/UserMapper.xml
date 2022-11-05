@@ -21,4 +21,12 @@
      false
     )
   </insert>
+  
+  <select id="selectUserCountByUserName" resultType="Integer">
+   select 
+    COUNT(*) 
+   from user
+   where 
+   user_name = #{userName}
+  </select>
 </mapper>

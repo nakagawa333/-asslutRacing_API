@@ -9,7 +9,7 @@ import com.example.assolutoRacing.Mapper.UserMapper;
 /**
  * 
  * @author nakagawa.so
- * ユーザー登録サービスクラス
+ * ユーザーサービスクラス
  */
 @Service
 public class UserService {
@@ -28,5 +28,19 @@ public class UserService {
 			throw e;
 		}
 		return insertCount;
+	}
+	
+	/**
+	 * ユーザー数をidから取得する
+	 * @return ユーザー件数
+	 */
+	public Integer selectUserCountByUserName(String userName) {
+		int userCount = 0;
+		try {
+			userCount = userMapper.selectUserCountByUserName(userName);
+		} catch(Exception e) {
+			throw e;
+		}
+		return userCount;
 	}
 }

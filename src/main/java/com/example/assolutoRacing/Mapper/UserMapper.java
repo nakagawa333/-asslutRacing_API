@@ -13,9 +13,8 @@ public interface UserMapper {
 	Integer insert(RegistUserDto registUser);
 	
 	/**
-	 * ユーザーをidから取得する
+	 * ユーザー数をユーザー名から取得する
 	 * @return ユーザー件数
 	 */
-	
-	Integer selectUserById(int userId);
+	Integer selectUserCountByUserName(String userName);
 }

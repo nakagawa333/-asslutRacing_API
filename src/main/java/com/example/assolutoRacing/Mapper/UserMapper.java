@@ -2,6 +2,7 @@ package com.example.assolutoRacing.Mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 
@@ -27,5 +28,5 @@ public interface UserMapper {
 	 * ユーザー認証
 	 * @return ユーザー件数
 	 */
-	Integer auth(AuthUserDto authUser);
+	AuthUserRes auth(AuthUserDto authUser);
 }

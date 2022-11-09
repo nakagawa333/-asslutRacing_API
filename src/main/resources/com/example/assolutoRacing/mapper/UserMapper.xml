@@ -4,6 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.example.assolutoRacing.Mapper.UserMapper">
+
+  <resultMap id="User" type="com.example.assolutoRacing.Bean.AuthUserRes">
+    <result column="user_id" property="userId"></result>
+    <result column="user_name" property="userName"></result>
+    <result column="password" property="password"></result>
+  </resultMap>
+  
   <insert id="insert">
     insert into user
     (
@@ -30,9 +37,11 @@
    user_name = #{userName}
   </select>
   
-  <select id="auth" resultType="Integer">
+  <select id="auth" resultMap="User">
     select
-     COUNT(*)
+	 user_id,
+	 user_name,
+	 password
     from user
     <where>
     user_name = #{userName}
@@ -40,4 +49,5 @@
     password = #{password}
     </where>
   </select>
+  
 </mapper>

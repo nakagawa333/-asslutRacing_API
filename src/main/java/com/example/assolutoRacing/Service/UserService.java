@@ -3,6 +3,7 @@ package com.example.assolutoRacing.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 import com.example.assolutoRacing.Mapper.UserMapper;
@@ -49,13 +50,13 @@ public class UserService {
 	 * ユーザー認証
 	 * @return ユーザー件数
 	 */
-	public Integer auth(AuthUserDto authUser) {
-		int userCount = 0;
+	public AuthUserRes auth(AuthUserDto authUser) {
+		AuthUserRes user = new AuthUserRes();
 		try {
-			userCount = userMapper.auth(authUser);
+			user = userMapper.auth(authUser);
 		} catch(Exception e) {
 			throw e;
 		}
-		return userCount;
+		return user;
 	}
 }

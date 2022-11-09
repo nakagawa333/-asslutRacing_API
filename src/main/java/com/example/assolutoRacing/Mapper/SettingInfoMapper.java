@@ -14,7 +14,7 @@ public interface SettingInfoMapper{
 	 * 全設定情報を取得
 	 * @return 全設定情報
 	 */
-	List<SettingInfoDto> selectAll();
+	List<SettingInfoDto> selectAll(Integer userId);
 	
 	 /**
 	 * 全設定情報の全カウント数を取得

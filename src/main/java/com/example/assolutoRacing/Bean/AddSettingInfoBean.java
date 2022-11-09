@@ -17,66 +17,69 @@ public class AddSettingInfoBean{
 	//タイトル
 	@NotBlank
 	@Size(max=100,min=1,message="タイトルは1文字以上100文字以下でお願い致します")
-	public String title;
+	private String title;
 	//車id
 	@NotNull
-	public Integer carId;
+	private Integer carId;
 	//メーカーid
 	@NotNull
-	public Integer makerId;
+	private Integer makerId;
 	//コースid
 	@NotNull
-	public Integer courseId;
+	private Integer courseId;
 	//abs
-	public Boolean abs;
+	private Boolean abs;
 	//パワーステリング
-	public Integer powerSteering;
+	private Integer powerSteering;
 	//デブギア
-	public BigDecimal diffgear;
+	private BigDecimal diffgear;
 	//フロントタイヤの圧力
-	public BigDecimal frontTirePressure;
+	private BigDecimal frontTirePressure;
 	//リアタイヤの圧力
-	public BigDecimal rearTirePressure;
+	private BigDecimal rearTirePressure;
 	//タイヤの種類
 	@NotNull
-	public Integer tireId;
+	private Integer tireId;
 	//空気圧
-	public BigDecimal airPressure;
+	private BigDecimal airPressure;
 	//ギア比ファイナル
-	public BigDecimal gearFinal;
+	private BigDecimal gearFinal;
 	//ギア比1
-	public BigDecimal gearOne;
+	private BigDecimal gearOne;
 	//ギア比2
-	public BigDecimal gearTwo;
+	private BigDecimal gearTwo;
 	//ギア比3
-	public BigDecimal gearThree;
+	private BigDecimal gearThree;
 	//ギア比4
-	public BigDecimal gearFour;
+	private BigDecimal gearFour;
 	//ギア比5
-	public BigDecimal gearFive;
+	private BigDecimal gearFive;
 	//スタビライザー前
-	public BigDecimal stabiliserAgo;
+	private BigDecimal stabiliserAgo;
 	//スタビライザー後
-	public BigDecimal stabiliserAfter;
+	private BigDecimal stabiliserAfter;
 	//最大舵角
-	public BigDecimal maxRudderAngle;
+	private BigDecimal maxRudderAngle;
 	//アッカーマンアングル
-	public BigDecimal ackermannAngle;
+	private BigDecimal ackermannAngle;
 	//キャンバー前
-	public BigDecimal camberAgo;
+	private BigDecimal camberAgo;
 	//キャンバー後
-	public BigDecimal camberAfter;
+	private BigDecimal camberAfter;
 	//ブレーキパワー
-	public BigDecimal breakPower;
+	private BigDecimal breakPower;
 	//ブレーキバランス
-	public BigDecimal breakBallance;
+	private BigDecimal breakBallance;
 	//車高
-	public BigDecimal carHigh;
+	private BigDecimal carHigh;
 	//オフセット
-	public BigDecimal offset;
+	private BigDecimal offset;
 	//ホイールサイズ
-	public BigDecimal hoilesize;
+	private BigDecimal hoilesize;
 	//メモ
 	@Size(max=700,message="メモは、700文字以内でお願い致します")
-	public String memo;
+	private String memo;
+	//ユーザーid
+	@NotNull
+	private Integer userId;
 }

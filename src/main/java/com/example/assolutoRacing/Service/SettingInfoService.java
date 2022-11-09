@@ -29,24 +29,13 @@ public class SettingInfoService {
 	 * 設定情報を全取得する
 	 * @return 設定情報リスト
 	 */
-	public List<SettingInfoDto> selectAll() {
+	public List<SettingInfoDto> selectAll(Integer userId) {
 		List<SettingInfoDto> settingInfoDtoList = new ArrayList<>();
-		
-		int selectCount = 0;
-		
 		try {
-			selectCount = settingInfoMapper.getSelectCount();
+			settingInfoDtoList = settingInfoMapper.selectAll(userId);
 		} catch(Exception e) {
 			throw e;
-		}
-		
-		if(selectCount != 0) {
-			try {
-				settingInfoDtoList = settingInfoMapper.selectAll();
-			} catch(Exception e) {
-				throw e;
-			}			
-		}
+		}		
 		return settingInfoDtoList;
 	}
 	

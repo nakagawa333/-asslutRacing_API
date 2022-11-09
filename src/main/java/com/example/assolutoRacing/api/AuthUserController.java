@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.example.assolutoRacing.Bean.AuthUserBean;
+import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Service.UserService;
@@ -31,8 +32,8 @@ public class AuthUserController {
 	UserService userService;
 	
 	@RequestMapping(path = "/auth/user", method = RequestMethod.POST)
-	public ResponseEntity<Integer> authUser(@RequestBody(required = true) @Validated AuthUserBean authUserBean){
-		int userCount = 0;
+	public ResponseEntity<AuthUserRes> authUser(@RequestBody(required = true) @Validated AuthUserBean authUserBean){
+		AuthUserRes user = new AuthUserRes();
 		
 		String password = DigestUtils.sha1Hex(authUserBean.getPassword());
 		AuthUserDto authUser = new AuthUserDto();
@@ -40,12 +41,12 @@ public class AuthUserController {
 		authUser.setUserName(authUserBean.getUserName());
 		
 		try {
-			userCount = userService.auth(authUser);
+			user = userService.auth(authUser);
 		} catch(Exception e) {
 			throw e;
 		}
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<Integer> resEntity = new ResponseEntity<>(userCount,headers,HttpStatus.CREATED); 
+		ResponseEntity<AuthUserRes> resEntity = new ResponseEntity<>(user,headers,HttpStatus.CREATED); 
 		return resEntity;
 	}
 }

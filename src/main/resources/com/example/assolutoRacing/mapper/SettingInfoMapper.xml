@@ -38,6 +38,7 @@
      <result column="off_set" property="offset"></result>
      <result column="hoilesize" property="hoilesize"></result>
      <result column="memo" property="memo"></result>
+     <result column="user_id" property="userId"></result>
   </resultMap>
   
   <select id="selectAll" resultMap="selectSettingInfo">
@@ -85,7 +86,8 @@
 		on si.maker_id = maker.maker_id
 		inner join tire_type
 		on si.tire_id = tire_type.tire_id
-		where delete_flag = false;
+		where delete_flag = false
+		and user_id = #{userId};
   </select>
   
   <select id="getSelectCount" resultType="Integer">
@@ -144,7 +146,8 @@
 		off_set,
 		hoilesize,
 		memo,
-		delete_flag)
+		delete_flag,
+		user_id)
 	values(
 	    #{title},
 		#{makerId},
@@ -175,7 +178,8 @@
 		#{offset},
 		#{hoilesize},
 		#{memo},
-		false
+		false,
+		#{userId}
 	)
   </insert>
   

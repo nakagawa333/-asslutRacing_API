@@ -44,9 +44,15 @@
 	 password
     from user
     <where>
-    user_name = #{userName}
-    and 
-    password = #{password}
+	    password = #{password}
+	    <if test="userName != null">
+	      and
+	      user_name = #{userName}
+	    </if>
+	    <if test="mail != null">
+	      and
+	      mail = #{mail}	    
+	    </if>
     </where>
   </select>
   

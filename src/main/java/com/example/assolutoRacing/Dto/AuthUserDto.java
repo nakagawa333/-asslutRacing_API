@@ -11,6 +11,8 @@ import lombok.Data;
 public class AuthUserDto {
 	/** ユーザー名 **/
 	private String userName;
+	/** メール **/
+	private String mail;
 	/** パスワード **/
 	private String password;
 }

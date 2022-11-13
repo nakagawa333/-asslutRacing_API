@@ -17,11 +17,13 @@ import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Service.UserService;
+import org.apache.commons.lang3.StringUtils;
+
 
 /**
  * 
  * @author nakagawa.so
- * ユーザー登録情報コントローラークラス
+ * ユーザー認証コントローラークラス
  *
  */
 @CrossOrigin(origins = Constants.ORIGINS)
@@ -35,9 +37,23 @@ public class AuthUserController {
 	public ResponseEntity<AuthUserRes> authUser(@RequestBody(required = true) @Validated AuthUserBean authUserBean){
 		AuthUserRes user = new AuthUserRes();
 		
+		String userName = authUserBean.getUserName();
+		String mail = authUserBean.getMail();
+		
+		if(StringUtils.isEmpty(mail) && StringUtils.isEmpty(userName)) {
+			throw new NullPointerException("ユーザー名とパスワードの値がありません。");
+		}
+		//パスワードをハッシュ化
 		String password = DigestUtils.sha1Hex(authUserBean.getPassword());
 		AuthUserDto authUser = new AuthUserDto();
 		authUser.setPassword(password);
+		
+		if(StringUtils.isNoneEmpty(userName)) {
+			authUser.setUserName(userName);
+		} else if(StringUtils.isNoneEmpty(mail)) {
+			authUser.setMail(mail);
+		}
+		
 		authUser.setUserName(authUserBean.getUserName());
 		
 		try {

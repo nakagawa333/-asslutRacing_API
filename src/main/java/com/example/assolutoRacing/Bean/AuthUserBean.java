@@ -1,14 +1,16 @@
 package com.example.assolutoRacing.Bean;
 
 import lombok.Data;
-import lombok.NonNull;
+import javax.validation.constraints.NotBlank;
+
 
 @Data
 public class AuthUserBean {
 	//ユーザー名
-	@NonNull
 	private String userName;
+	//メール
+	private String mail;
+	@NotBlank
 	//パスワード
-	@NonNull
 	private String password;
 }

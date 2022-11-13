@@ -23,18 +23,18 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 
  * @author nakagawa.so
- * ユーザー認証コントローラークラス
+ * ログインコントローラークラス
  *
  */
 @CrossOrigin(origins = Constants.ORIGINS)
 @RestController
-public class AuthUserController {
+public class LoginController {
 	
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(path = "/auth/user", method = RequestMethod.POST)
-	public ResponseEntity<AuthUserRes> authUser(@RequestBody(required = true) @Validated AuthUserBean authUserBean){
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	public ResponseEntity<AuthUserRes> login(@RequestBody(required = true) @Validated AuthUserBean authUserBean){
 		AuthUserRes user = new AuthUserRes();
 		
 		String userName = authUserBean.getUserName();

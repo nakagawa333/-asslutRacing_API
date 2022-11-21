@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.example.assolutoRacing.Mapper.TempUserMapper">
+
+  <resultMap id="TempUser" type="com.example.assolutoRacing.Dto.SelectTempUserDto">
+    <result column="mail" property="mail"></result>
+    <result column="user_name" property="userName"></result>
+    <result column="password" property="password"></result>
+  </resultMap>
+  
+  <insert id="insert">
+    insert into temp_user
+    (
+     user_name,
+     mail,
+     auth_token,
+     password,
+     create_time
+    )
+    values(
+     #{userName},
+     #{mail},
+     #{authToken},
+     #{password},
+     NOW()
+    )
+  </insert>
+  
+  <select id="selectByToken" resultMap="TempUser">
+     select 
+        user_name,
+        mail,
+        password
+     from temp_user
+     <where>
+        auth_token = #{token}
+     </where>
+     Limit 1
+  </select>
+</mapper>

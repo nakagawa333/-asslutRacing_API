@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.assolutoRacing.Bean.AuthUserRes;
+import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 import com.example.assolutoRacing.Mapper.UserMapper;
@@ -58,5 +59,20 @@ public class UserService {
 			throw e;
 		}
 		return user;
+	}
+	
+	/**
+	 * ユーザーを取得する.
+	 * @param selectUserBean
+	 * @return ユーザー件数
+	 */
+	public Integer select(SelectUserBean selectUserBean) {
+		int userCount = 0;
+		try {
+			userCount = userMapper.select(selectUserBean);
+		} catch(Exception e) {
+			throw e;
+		}
+		return userCount;		
 	}
 }

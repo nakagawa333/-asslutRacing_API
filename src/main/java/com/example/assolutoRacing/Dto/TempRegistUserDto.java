@@ -3,11 +3,13 @@ package com.example.assolutoRacing.Dto;
 import lombok.Data;
 
 @Data
-public class RegistUserDto {
+public class TempRegistUserDto {
 	/** ユーザー名 **/
 	private String userName;
-	/** パスワード **/
-	private String password;
 	/** メール **/
 	private String mail;
+	/*認証トークン*/
+	private String authToken;
+	/** パスワード **/
+	private String password;
 }

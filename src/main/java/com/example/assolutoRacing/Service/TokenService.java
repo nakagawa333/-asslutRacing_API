@@ -31,6 +31,8 @@ public class TokenService {
 			//16byteのランダム文字列
 			byte[] randomBytes = new byte[16];
 			SecureRandom secureRandom = new SecureRandom();
+			secureRandom.nextBytes(randomBytes);
+			buf.put(randomBytes);
 			
 			//32byteのemailハッシュ値
 			byte[] emailHashBytes = DigestUtils.sha256(email + Hex.encodeHexString(randomBytes));

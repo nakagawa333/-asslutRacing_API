@@ -3,6 +3,7 @@ package com.example.assolutoRacing.Mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.assolutoRacing.Bean.AuthUserRes;
+import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 
@@ -29,4 +30,12 @@ public interface UserMapper {
 	 * @return ユーザー件数
 	 */
 	AuthUserRes auth(AuthUserDto authUser);
+	
+	/**
+	 * 
+	 * ユーザー情報を取得する.
+	 * @param selectUserBean 
+	 * @return ユーザー件数
+	 */
+	Integer select(SelectUserBean selectUserBean);
 }

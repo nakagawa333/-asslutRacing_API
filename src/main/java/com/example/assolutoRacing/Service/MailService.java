@@ -1,9 +1,5 @@
 package com.example.assolutoRacing.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
@@ -23,11 +19,6 @@ import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 
 @Service
 public class MailService {
-	
-	@Autowired
-	MailSender mailSender;
-	
-	static final String CONFIGSET = "ConfigSet";
 	/**
 	 * メールを送信する.
 	 * @param to 送信先

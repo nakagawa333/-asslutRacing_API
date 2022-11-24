@@ -54,7 +54,7 @@ public class MailService {
 	 * @return 本文
 	 */
 	public String createMailAuthTextbody(String url) {
-		String textBody = "<p>以下のリンクからユーザー認証を行ってください。</p>"
+		String textBody = "<p>以下のリンクからパスワードの変更を行ってください。期限は24時間です。</p>"
 				+ "<br>"
 				+ "<br>"
 				+ "<p><a href='"

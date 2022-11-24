@@ -1,4 +1,4 @@
-package com.example.assolutoRacing.api;
+package com.example.assolutoRacing.Bean;
 
 import javax.validation.constraints.NotBlank;
 

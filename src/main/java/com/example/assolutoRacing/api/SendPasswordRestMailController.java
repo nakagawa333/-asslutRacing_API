@@ -79,7 +79,7 @@ public class SendPasswordRestMailController {
 				throw new Exception("トークンの生成に失敗しました");
 			}
 			//遷移先のURL
-			String url = requestUrl + "/verify/mail/?token=" + token;
+			String url = requestUrl + "/verify/mail?token=" + token;
 			//メール本文
 			String textBody = mailService.createMailAuthTextbody(url);
 			

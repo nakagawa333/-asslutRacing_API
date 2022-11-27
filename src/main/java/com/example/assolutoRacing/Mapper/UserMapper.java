@@ -6,6 +6,7 @@ import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
+import com.example.assolutoRacing.Dto.UpdatePasswordDto;
 
 /**
  * @author nakagawa.so
@@ -38,4 +39,11 @@ public interface UserMapper {
 	 * @return ユーザー件数
 	 */
 	Integer select(SelectUserBean selectUserBean);
+	
+	/**
+	 * メールを条件にパスワードを更新する。
+	 * @param updatePassword
+	 * @return 更新件数
+	 */
+	Integer updatePassword(UpdatePasswordDto updatePassword);
 }

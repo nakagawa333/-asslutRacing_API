@@ -7,6 +7,7 @@ import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
+import com.example.assolutoRacing.Dto.UpdatePasswordDto;
 import com.example.assolutoRacing.Mapper.UserMapper;
 
 /**
@@ -74,5 +75,20 @@ public class UserService {
 			throw e;
 		}
 		return userCount;		
+	}
+	
+	/**
+	 * メールを条件にパスワードを更新する。
+	 * @param updatePassword
+	 * @return 更新件数
+	 */
+	public Integer updatePassword(UpdatePasswordDto updatePassword) {
+		int updateCount = 0;
+		try {
+			updateCount = userMapper.updatePassword(updatePassword);
+		} catch(Exception e) {
+			throw e;
+		}
+		return updateCount;
 	}
 }

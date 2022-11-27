@@ -85,4 +85,15 @@
      </where>
   </select>
   
+  <update id="updatePassword">
+     update
+     user
+     <set>
+       password = #{password}
+     </set>
+     
+     <where>
+       mail = #{mail}
+     </where>
+  </update>
 </mapper>

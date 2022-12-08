@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Bean.UpdatePasswordBean;
 import com.example.assolutoRacing.Constants.Constants;
-import com.example.assolutoRacing.Dto.RegistUserDto;
-import com.example.assolutoRacing.Dto.SelectTempUserDto;
 import com.example.assolutoRacing.Dto.UpdatePasswordDto;
 import com.example.assolutoRacing.Service.PasswordResetService;
 import com.example.assolutoRacing.Service.TempUserService;
@@ -50,7 +47,7 @@ public class UpdatePasswordController {
 	@Transactional
 	public ResponseEntity<Integer> updatePassword(@RequestBody(required = true) UpdatePasswordBean updatePasswordBean) throws Exception{
 		//パスワードをハッシュ化
-		String password = DigestUtils.sha1Hex(updatePasswordBean.getPassword());
+		String password = DigestUtils.sha256Hex(updatePasswordBean.getPassword());
 		//メール
 		String mail = "";
 		

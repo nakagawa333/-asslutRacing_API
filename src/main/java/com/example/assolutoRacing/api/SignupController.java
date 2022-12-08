@@ -19,6 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * 
@@ -57,7 +58,7 @@ public class SignupController {
 		
 		TempRegistUserDto tempRegistUserDto = new TempRegistUserDto();
 		tempRegistUserDto.setUserName(tempUserBean.getUserName());
-		tempRegistUserDto.setPassword(tempUserBean.getPassword());
+		tempRegistUserDto.setPassword(DigestUtils.sha256Hex(tempUserBean.getPassword()));
 		tempRegistUserDto.setMail(tempUserBean.getMail());
 		tempRegistUserDto.setAuthToken(token);
 		

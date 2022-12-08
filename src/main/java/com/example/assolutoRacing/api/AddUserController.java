@@ -36,7 +36,7 @@ public class AddUserController {
 	public ResponseEntity<Integer> addUser(@RequestBody(required = true) @Validated RegistUserBean registUserBean){
 		int insertCount = 0;
 		
-		String password = DigestUtils.sha1Hex(registUserBean.getPassword());
+		String password = DigestUtils.sha256Hex(registUserBean.getPassword());
 		RegistUserDto registUser = new RegistUserDto();
 		registUser.setUserName(registUserBean.getUserName());
 		registUser.setPassword(password);

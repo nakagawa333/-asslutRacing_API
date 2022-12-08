@@ -52,13 +52,10 @@ public class VerifyTokenController {
 		if(tempUser == null) {
 			throw new Exception("仮ユーザーが存在しません");
 		}
-		
-		//パスワードをハッシュ化
-		String password = DigestUtils.sha1Hex(tempUser.getPassword());
-		
+				
 		RegistUserDto registUser = new RegistUserDto();
 		registUser.setMail(tempUser.getMail());
-		registUser.setPassword(password);
+		registUser.setPassword(tempUser.getPassword());
 		registUser.setUserName(tempUser.getUserName());
 		
 		int insertUserCount = 0;

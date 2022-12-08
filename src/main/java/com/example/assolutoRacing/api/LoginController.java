@@ -44,7 +44,7 @@ public class LoginController {
 			throw new NullPointerException("ユーザー名とパスワードの値がありません。");
 		}
 		//パスワードをハッシュ化
-		String password = DigestUtils.sha1Hex(authUserBean.getPassword());
+		String password = DigestUtils.sha256Hex(authUserBean.getPassword());
 		AuthUserDto authUser = new AuthUserDto();
 		authUser.setPassword(password);
 		

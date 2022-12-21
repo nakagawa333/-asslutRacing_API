@@ -3,7 +3,6 @@ package com.example.assolutoRacing.api;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +17,13 @@ import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Service.SettingInfoService;
 
 import lombok.Data;
-import lombok.NonNull;
 
+
+/*
+ * 設定情報削除コントローラークラス
+ * @author nakagawa.so
+ *
+ */
 @CrossOrigin(origins = Constants.ORIGINS)
 @RestController
 public class DeleteSettingInfoController {
@@ -28,17 +32,20 @@ public class DeleteSettingInfoController {
 	
 	@RequestMapping(path = "/delete", method = RequestMethod.PUT)
 	@Transactional
-	public ResponseEntity<Integer> delete(@RequestBody(required = true) Request req) {
+	public ResponseEntity<Boolean> delete(@RequestBody(required = true) Request req) {
 		int deleteCount = 0;
 		
 		try {
+			//該当idの設定情報を削除
 			deleteCount = settingInfoService.deleteOne(req.getId());
 		} catch(Exception e) {
 			throw e;
 		}
 		
+		Boolean deleteSucessFlag = deleteCount == 0 ? true : false;
+
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<Integer> resEntity = new ResponseEntity<>(deleteCount,headers,HttpStatus.CREATED);
+		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(deleteSucessFlag,headers,HttpStatus.CREATED);
 		return resEntity;
 	}
 	

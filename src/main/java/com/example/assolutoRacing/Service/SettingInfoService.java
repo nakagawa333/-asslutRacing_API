@@ -10,7 +10,7 @@ import com.example.assolutoRacing.Bean.AddSettingInfoBean;
 import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Mapper.SettingInfoMapper;
-
+import com.example.assolutoRacing.Bean.SelectSettingInfoRes;
 @Service
 public class SettingInfoService {
 	@Autowired
@@ -67,5 +67,20 @@ public class SettingInfoService {
 			throw e;
 		}
 		return updateCount;
+	}
+	
+	/**
+	 * idから設定情報を取得する
+	 * @param id id
+	 * @return 設定情報
+	 */
+	public SelectSettingInfoRes selectSettingInfoById(Integer id) {
+		SelectSettingInfoRes selectSettingInfoRes = new SelectSettingInfoRes();
+		try {
+			selectSettingInfoRes = settingInfoMapper.selectSettingInfoById(id);
+		} catch(Exception e) {
+			throw e;
+		}
+		return selectSettingInfoRes;
 	}
 }

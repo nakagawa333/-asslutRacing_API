@@ -267,4 +267,56 @@
 	        id = #{id}
 	    </where>
 	</update>
+	
+	<select id="selectSettingInfoById" resultType="com.example.assolutoRacing.Bean.SelectSettingInfoRes">
+		 select 
+		    si.id,
+		    si.title,
+		    si.maker_id,
+		    si.course_id,
+		    si.car_id,
+		    si.abs,
+		    si.power_steering,
+		    si.diffgear,
+		    si.frontTire_pressure,
+		    si.rearTire_pressure,
+		    si.tire_id,
+		    si.air_pressure,
+		    si.gear_final,
+		    si.gear_one,
+		    si.gear_two,
+		    si.gear_three,
+		    si.gear_four,
+		    si.gear_five,
+		    si.stabiliser_ago,
+		    si.stabiliser_after,
+		    si.max_rudder_angle,
+		    si.ackermann_angle,
+		    si.camber_ago,
+		    si.camber_after,
+		    si.break_power,
+		    si.break_ballance,
+		    si.car_high,
+		    si.off_set,
+		    si.hoilesize,
+		    si.memo,
+		    car.car_name,
+		    course.course_name,
+		    maker.maker_name,
+		    tire_type.tire_name
+		from setting_info as si
+		inner join car 
+		on si.car_id = car.car_id
+		inner join course
+		on si.course_id = course.course_id
+		inner join maker
+		on si.maker_id = maker.maker_id
+		inner join tire_type
+		on si.tire_id = tire_type.tire_id
+	    <where>
+	      id=#{id}
+	    </where>
+	    Limit 1
+	</select>
+	
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.assolutoRacing.Bean.AddSettingInfoBean;
+import com.example.assolutoRacing.Bean.SelectSettingInfoRes;
 import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 
@@ -42,4 +43,11 @@ public interface SettingInfoMapper{
 	 * @return　更新件数
 	 */
 	Integer update(UpdateSettingInfoBean settingInfo);
+	
+	/**
+	 * idから設定情報を取得する
+	 * @param id id
+	 * @return 設定情報レスポンスクラス
+	 */
+	SelectSettingInfoRes selectSettingInfoById(Integer id);
 }

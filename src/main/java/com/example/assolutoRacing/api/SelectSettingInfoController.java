@@ -4,19 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.assolutoRacing.Bean.SelectSettingInfoRes;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Service.SettingInfoService;
-import com.example.assolutoRacing.api.DeleteSettingInfoController.Request;
 
 /**
  * 
@@ -40,7 +36,7 @@ public class SelectSettingInfoController {
 		}
 
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<SelectSettingInfoRes> resEntity = new ResponseEntity<>(selectSettingInfoRes,headers,HttpStatus.CREATED);
+		ResponseEntity<SelectSettingInfoRes> resEntity = new ResponseEntity<>(selectSettingInfoRes,headers,HttpStatus.OK);
 		return resEntity;
 	}
 }

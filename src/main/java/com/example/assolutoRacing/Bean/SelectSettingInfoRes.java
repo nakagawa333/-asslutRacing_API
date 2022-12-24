@@ -14,6 +14,8 @@ import javax.validation.constraints.Size;
  */
 @Data
 public class SelectSettingInfoRes{
+	//id
+	private Integer id;
 	//タイトル
 	private String title;
 	//車id
@@ -73,6 +75,4 @@ public class SelectSettingInfoRes{
 	private BigDecimal hoilesize;
 	//メモ
 	private String memo;
-	//ユーザーid
-	private Integer userId;
 }

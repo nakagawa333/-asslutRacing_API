@@ -35,7 +35,6 @@ public class SelectSettingInfoRes{
 	//リアタイヤの圧力
 	private BigDecimal rearTirePressure;
 	//タイヤの種類
-	@NotNull
 	private Integer tireId;
 	//空気圧
 	private BigDecimal airPressure;
@@ -75,4 +74,6 @@ public class SelectSettingInfoRes{
 	private BigDecimal hoilesize;
 	//メモ
 	private String memo;
+	//ユーザーid
+	private Integer userId;
 }

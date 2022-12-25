@@ -299,7 +299,8 @@
 		    si.car_high AS carHigh,
 		    si.off_set AS offset,
 		    si.hoilesize,
-		    si.memo
+		    si.memo,
+		    si.user_id AS userId
 		from setting_info as si
 		inner join car 
 		on si.car_id = car.car_id
@@ -309,6 +310,8 @@
 		on si.maker_id = maker.maker_id
 		inner join tire_type
 		on si.tire_id = tire_type.tire_id
+		inner join user
+		on si.user_id = user.user_id
 	    <where>
 	      id=#{id}
 	    </where>

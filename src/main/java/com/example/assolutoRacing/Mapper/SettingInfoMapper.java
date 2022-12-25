@@ -7,6 +7,7 @@ import com.example.assolutoRacing.Bean.AddSettingInfoBean;
 import com.example.assolutoRacing.Bean.SelectSettingInfoRes;
 import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
+import com.example.assolutoRacing.Dto.UpdateSettingInfoDto;
 
 @Mapper
 public interface SettingInfoMapper{
@@ -38,11 +39,11 @@ public interface SettingInfoMapper{
 	Integer insert(AddSettingInfoBean settingInfo);
 
 	/**
-	 * 
+	 * 設定情報を更新する
 	 * @param settingInfo 更新用設定情報格納クラス
 	 * @return　更新件数
 	 */
-	Integer update(UpdateSettingInfoBean settingInfo);
+	Integer update(UpdateSettingInfoDto updateSettingInfoDto);
 	
 	/**
 	 * idから設定情報を取得する

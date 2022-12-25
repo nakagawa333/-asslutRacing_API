@@ -1,35 +1,26 @@
-package com.example.assolutoRacing.Bean;
+package com.example.assolutoRacing.Dto;
 
 import java.math.BigDecimal;
-
 import lombok.Data;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-
-/**
- * @author nakagawa.so
- * 	更新用設定情報格納クラス
- */
 @Data
-public class UpdateSettingInfoBean{
+public class UpdateSettingInfoDto {
 	//id
-	@NotNull
-	 Integer id;
+	private Integer id;
 	//タイトル
-	@NotBlank
-	@Size(max=100,min=1,message="タイトルの見直しをお願い致します。")
 	private String title;
+	//車名
+	private String carName;
+	//メーカー
+	private String markerName;
 	//車id
-	@NotNull
 	private Integer carId;
 	//メーカーid
-	@NotNull
 	private Integer makerId;
 	//コースid
-	@NotNull
 	private Integer courseId;
+	//コース
+	private String course;
 	//abs
 	private Boolean abs;
 	//パワーステリング
@@ -41,7 +32,6 @@ public class UpdateSettingInfoBean{
 	//リアタイヤの圧力
 	private BigDecimal rearTirePressure;
 	//タイヤの種類
-	@NotNull
 	private Integer tireId;
 	//空気圧
 	private BigDecimal airPressure;
@@ -80,9 +70,7 @@ public class UpdateSettingInfoBean{
 	//ホイールサイズ
 	private BigDecimal hoilesize;
 	//メモ
-	@Size(max=700,message="メモの最大文字数を越えています。")
 	private String memo;
-	//ユーザid
-	@NotNull
+	//ユーザーid
 	private Integer userId;
 }

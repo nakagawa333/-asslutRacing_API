@@ -11,6 +11,8 @@ import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Mapper.SettingInfoMapper;
 import com.example.assolutoRacing.Bean.SelectSettingInfoRes;
+import com.example.assolutoRacing.Dto.UpdateSettingInfoDto;
+
 @Service
 public class SettingInfoService {
 	@Autowired
@@ -59,10 +61,10 @@ public class SettingInfoService {
 	 * @param settingInfo  登録用設定情報格納クラス
 	 * @return 更新件数
 	 */
-	public Integer update(UpdateSettingInfoBean settingInfo) {
+	public Integer update(UpdateSettingInfoDto updateSettingInfoDto) {
 		int updateCount = 0;
 		try {
-			updateCount = settingInfoMapper.update(settingInfo);
+			updateCount = settingInfoMapper.update(updateSettingInfoDto);
 		} catch(Exception e) {
 			throw e;
 		}

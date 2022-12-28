@@ -10,6 +10,6 @@
       content,
       create_time AS createTime
     from notification
-    order by create_time
+    order by create_time desc;
   </select>
 </mapper>

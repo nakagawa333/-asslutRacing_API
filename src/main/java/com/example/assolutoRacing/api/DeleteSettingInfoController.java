@@ -44,7 +44,6 @@ public class DeleteSettingInfoController {
 		
 		//削除件数が1件の場合成功
 		Boolean deleteSucessFlag = deleteCount == 1 ? true : false;
-
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(deleteSucessFlag,headers,HttpStatus.CREATED);
 		return resEntity;

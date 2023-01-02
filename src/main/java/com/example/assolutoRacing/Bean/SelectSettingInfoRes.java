@@ -50,6 +50,8 @@ public class SelectSettingInfoRes{
 	private BigDecimal gearFour;
 	//ギア比5
 	private BigDecimal gearFive;
+	//ギア比6
+	private BigDecimal gearSix;
 	//スタビライザー前
 	private BigDecimal stabiliserAgo;
 	//スタビライザー後

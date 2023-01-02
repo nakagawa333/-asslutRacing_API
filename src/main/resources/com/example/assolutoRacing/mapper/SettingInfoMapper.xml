@@ -101,6 +101,7 @@
 		gear_three,
 		gear_four,
 		gear_five,
+		gear_six,
 		stabiliser_ago,
 		stabiliser_after,
 		max_rudder_angle,
@@ -135,6 +136,7 @@
 		#{gearThree},
 		#{gearFour},
 		#{gearFive},
+		#{gearSix},
 		#{stabiliserAgo},
 		#{stabiliserAfter},
 		#{maxRudderAngle},
@@ -196,6 +198,9 @@
 	       </if>
 	       <if test="gearFive != null">
 	       gear_five = #{gearFive},
+	       </if>
+	       <if test="gearSix != null">
+	       gear_six = #{gearSix},
 	       </if>
 	       <if test="stabiliserAgo != null">
 	       stabiliser_ago = #{stabiliserAgo},
@@ -262,6 +267,7 @@
 		    si.gear_three AS gearThree,
 		    si.gear_four AS gearFour,
 		    si.gear_five AS gearFive,
+		    si.gear_six AS gearSix,
 		    si.stabiliser_ago AS stabiliserAgo,
 		    si.stabiliser_after AS stabiliserAfter,
 		    si.max_rudder_angle AS maxRudderAngle,

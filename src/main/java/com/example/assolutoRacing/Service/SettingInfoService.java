@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.assolutoRacing.Bean.AddSettingInfoBean;
 import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
+import com.example.assolutoRacing.Dto.AddSettingInfoDto;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Mapper.SettingInfoMapper;
 import com.example.assolutoRacing.Bean.SelectSettingInfoRes;
@@ -46,10 +47,10 @@ public class SettingInfoService {
 	 * @param settingInfo  登録用設定情報格納クラス
 	 * @return 登録件数
 	 */
-	public Integer insert(AddSettingInfoBean settingInfo) {
+	public Integer insert(AddSettingInfoDto addSettingInfoDto) {
 		int insertCount = 0;
 		try {
-			insertCount = settingInfoMapper.insert(settingInfo);
+			insertCount = settingInfoMapper.insert(addSettingInfoDto);
 		} catch(Exception e) {
 			throw e;
 		}

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.assolutoRacing.Bean.AddSettingInfoBean;
 import com.example.assolutoRacing.Bean.SelectSettingInfoRes;
 import com.example.assolutoRacing.Bean.UpdateSettingInfoBean;
+import com.example.assolutoRacing.Dto.AddSettingInfoDto;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Dto.UpdateSettingInfoDto;
 
@@ -36,7 +37,7 @@ public interface SettingInfoMapper{
 	 * @param settingInfo 登録用設定情報格納クラス
 	 * @return 登録件数
 	 */
-	Integer insert(AddSettingInfoBean settingInfo);
+	Integer insert(AddSettingInfoDto settingInfo);
 
 	/**
 	 * 設定情報を更新する

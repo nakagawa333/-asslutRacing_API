@@ -47,6 +47,7 @@ public class UpdateSettingInfoController {
 		updateSettingInfoDto.setDiffgear(updateSettingInfo.getDiffgear());
 		updateSettingInfoDto.setFrontTirePressure(updateSettingInfo.getFrontTirePressure());
 		updateSettingInfoDto.setGearFinal(updateSettingInfo.getGearFinal());
+		updateSettingInfoDto.setGearSix(updateSettingInfo.getGearSix());
 		updateSettingInfoDto.setGearFive(updateSettingInfo.getGearFive());
 		updateSettingInfoDto.setGearFour(updateSettingInfo.getGearFour());
 		updateSettingInfoDto.setGearThree(updateSettingInfo.getGearThree());

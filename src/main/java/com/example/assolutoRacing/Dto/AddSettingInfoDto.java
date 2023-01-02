@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-public class UpdateSettingInfoDto {
+public class AddSettingInfoDto {
 	//id
 	private Integer id;
 	//タイトル

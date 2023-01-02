@@ -3,80 +3,44 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.assolutoRacing.Mapper.SettingInfoMapper">
-  <resultMap id="selectSettingInfo" type="com.example.assolutoRacing.Dto.SettingInfoDto">
-     <result column="id" property="id"></result>
-     <result column="title" property="title"></result>
-     <result column="car_name" property="carName"></result>
-     <result column="maker_name" property="markerName"></result>
-     <result column="car_id" property="carId"></result>
-     <result column="maker_id" property="makerId"></result>
-     <result column="course_id" property="courseId"></result>
-     <result column="course_name" property="course"></result>
-     <result column="abs" property="abs"></result>
-     <result column="power_steering" property="powerSteering"></result>
-     <result column="diffgear" property="diffgear"></result>
-     <result column="frontTire_pressure" property="frontTirePressure"></result>
-     <result column="rearTire_pressure" property="rearTirePressure"></result>
-     <result column="tire_name" property="tireType"></result>
-     <result column="air_pressure" property="airPressure"></result>
-     <result column="gear_final" property="gearFinal"></result>
-     <result column="gear_one" property="gearOne"></result>
-     <result column="gear_two" property="gearTwo"></result>
-     <result column="gear_three" property="gearThree"></result>
-     <result column="gear_four" property="gearFour"></result>
-     <result column="gear_five" property="gearFive"></result>
-     <result column="stabiliser_ago" property="stabiliserAgo"></result>
-     <result column="stabiliser_after" property="stabiliserAfter"></result>
-     <result column="max_rudder_angle" property="maxRudderAngle"></result>
-     <result column="ackermann_angle" property="ackermannAngle"></result>
-     <result column="camber_ago" property="camberAgo"></result>
-     <result column="camber_after" property="camberAfter"></result>
-     <result column="break_power" property="breakPower"></result>
-     <result column="break_ballance" property="breakBallance"></result>
-     <result column="car_high" property="carHigh"></result>
-     <result column="off_set" property="offset"></result>
-     <result column="hoilesize" property="hoilesize"></result>
-     <result column="memo" property="memo"></result>
-     <result column="user_id" property="userId"></result>
-  </resultMap>
-  
-  <select id="selectAll" resultMap="selectSettingInfo">
+<mapper namespace="com.example.assolutoRacing.Mapper.SettingInfoMapper">  
+  <select id="selectAll" resultType="com.example.assolutoRacing.Dto.SettingInfoDto">
 		select 
-		    si.id,
-		    si.title,
-		    si.maker_id,
-		    si.course_id,
-		    si.car_id,
-		    si.abs,
-		    si.power_steering,
-		    si.diffgear,
-		    si.frontTire_pressure,
-		    si.rearTire_pressure,
-		    si.tire_id,
-		    si.air_pressure,
-		    si.gear_final,
-		    si.gear_one,
-		    si.gear_two,
-		    si.gear_three,
-		    si.gear_four,
-		    si.gear_five,
-		    si.stabiliser_ago,
-		    si.stabiliser_after,
-		    si.max_rudder_angle,
-		    si.ackermann_angle,
-		    si.camber_ago,
-		    si.camber_after,
-		    si.break_power,
-		    si.break_ballance,
-		    si.car_high,
-		    si.off_set,
+		    si.id AS id,
+		    si.title AS title,
+		    si.maker_id AS makerId,
+		    si.course_id AS courseId,
+		    si.car_id AS carId,
+		    si.abs AS abs,
+		    si.power_steering AS powerSteering,
+		    si.diffgear AS diffgear,
+		    si.frontTire_pressure AS frontTirePressure,
+		    si.rearTire_pressure AS frontTirePressure,
+		    tire_type.tire_name,
+		    si.air_pressure AS airPressure,
+		    si.gear_final AS gearFinal,
+		    si.gear_one AS gearOne,
+		    si.gear_two AS gearTwo,
+		    si.gear_three AS gearThree,
+		    si.gear_four AS gearFour,
+		    si.gear_five AS gearFive,
+		    si.gear_six AS gearSix,
+		    si.stabiliser_ago AS stabiliserAgo,
+		    si.stabiliser_after AS stabiliserAfter,
+		    si.max_rudder_angle AS maxRudderAngle,
+		    si.ackermann_angle AS ackermannAngle,
+		    si.camber_ago AS camberAgo,
+		    si.camber_after As camberAfter,
+		    si.break_power AS breakPower,
+		    si.break_ballance AS breakBallance,
+		    si.car_high AS carHigh,
+		    si.off_set AS offset,
 		    si.hoilesize,
 		    si.memo,
-		    car.car_name,
-		    course.course_name,
-		    maker.maker_name,
-		    tire_type.tire_name
+		    si.user_id AS userId,
+		    car.car_name AS carName,
+		    course.course_name AS course,
+		    maker.maker_name AS markerName
 		from setting_info as si
 		inner join car 
 		on si.car_id = car.car_id
@@ -86,8 +50,11 @@
 		on si.maker_id = maker.maker_id
 		inner join tire_type
 		on si.tire_id = tire_type.tire_id
-		where delete_flag = false
-		and user_id = #{userId};
+		<where>
+		delete_flag = false
+		and user_id = #{userId}
+		</where>
+		order by create_time desc;
   </select>
   
   <select id="getSelectCount" resultType="Integer">
@@ -147,7 +114,9 @@
 		hoilesize,
 		memo,
 		delete_flag,
-		user_id)
+		user_id,
+		create_time,
+		update_time)
 	values(
 	    #{title},
 		#{makerId},
@@ -179,7 +148,9 @@
 		#{hoilesize},
 		#{memo},
 		false,
-		#{userId}
+		#{userId},
+		now(),
+		now()
 	)
   </insert>
   
@@ -260,8 +231,9 @@
 	       hoilesize = #{hoilesize},
 	       </if>
 	       <if test="memo != null">
-	       memo = #{memo}
+	       memo = #{memo},
 	       </if>
+	       update_time = now()
 	     </set>
 	    <where>
 	        id = #{id}

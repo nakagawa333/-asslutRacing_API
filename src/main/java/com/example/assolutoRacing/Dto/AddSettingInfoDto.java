@@ -5,8 +5,6 @@ import lombok.Data;
 
 @Data
 public class AddSettingInfoDto {
-	//id
-	private Integer id;
 	//タイトル
 	private String title;
 	//車名

@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 public class UpdateSettingInfoBean{
 	//id
 	@NotNull
-	 Integer id;
+	private Integer id;
 	//タイトル
 	@NotBlank
 	@Size(max=100,min=1,message="タイトルの見直しをお願い致します。")

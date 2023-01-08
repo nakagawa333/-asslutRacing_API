@@ -38,7 +38,7 @@ public class VerifyTokenController {
 	
 	@RequestMapping(path = "/verify/token", method = RequestMethod.POST)
 	@Transactional
-	public ResponseEntity<Integer> verifyToken(@RequestBody(required = true) String token) throws Exception{
+	public ResponseEntity<Boolean> verifyToken(@RequestBody(required = true) String token) throws Exception{
 		SelectTempUserDto tempUser = new SelectTempUserDto();
 		
 		try {
@@ -71,9 +71,11 @@ public class VerifyTokenController {
 			throw new Exception("ユーザー登録に失敗しました");
 		}
 		
+		boolean insertUserSucessFlag = insertUserCount == 1 ? true : false;
+		
 		HttpHeaders headers = new HttpHeaders();
 		
-		ResponseEntity<Integer> resEntity = new ResponseEntity<>(insertUserCount,headers,HttpStatus.CREATED); 
+		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(insertUserSucessFlag,headers,HttpStatus.CREATED); 
 		return resEntity;
 	}
 }

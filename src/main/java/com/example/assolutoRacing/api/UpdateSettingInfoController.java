@@ -74,7 +74,7 @@ public class UpdateSettingInfoController {
 		}
 		
 		//更新件数が1件の場合成功
-		Boolean updateSucessFlag = updateCount == 1 ? true : false;
+		boolean updateSucessFlag = updateCount == 1 ? true : false;
 		HttpHeaders headers = new HttpHeaders();
 		
 		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(updateSucessFlag,headers,HttpStatus.CREATED); 

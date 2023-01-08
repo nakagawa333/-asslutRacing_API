@@ -45,7 +45,7 @@ public class UpdatePasswordController {
 	
 	@RequestMapping(path = "/password/update", method = RequestMethod.PUT)
 	@Transactional
-	public ResponseEntity<Integer> updatePassword(@RequestBody(required = true) UpdatePasswordBean updatePasswordBean) throws Exception{
+	public ResponseEntity<Boolean> updatePassword(@RequestBody(required = true) UpdatePasswordBean updatePasswordBean) throws Exception{
 		//パスワードをハッシュ化
 		String password = DigestUtils.sha256Hex(updatePasswordBean.getPassword());
 		//メール
@@ -74,9 +74,12 @@ public class UpdatePasswordController {
 			throw new SQLException("該当のメールメールアドレスのユーザーが存在しませんでした。");
 		}
 		
+		//メールの更新件数が1件の場合、true
+		boolean updateSucessFlag = updateCount == 1 ? true : false;
+		
 		HttpHeaders headers = new HttpHeaders();
 		
-		ResponseEntity<Integer> resEntity = new ResponseEntity<>(updateCount,headers,HttpStatus.CREATED); 
+		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(updateSucessFlag,headers,HttpStatus.CREATED); 
 		return resEntity;
 	}
 }

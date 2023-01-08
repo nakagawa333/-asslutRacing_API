@@ -30,7 +30,7 @@ public class AddSettingInfoController{
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	@Transactional
-	public ResponseEntity<Integer> add(@RequestBody(required = true) @Validated AddSettingInfoBean addSettingInfo) {
+	public ResponseEntity<Boolean> add(@RequestBody(required = true) @Validated AddSettingInfoBean addSettingInfo) {
 		int insertCount = 0;
 				
 		AddSettingInfoDto addSettingInfoDto = new AddSettingInfoDto();
@@ -65,17 +65,20 @@ public class AddSettingInfoController{
 		addSettingInfoDto.setStabiliserAgo(addSettingInfo.getStabiliserAgo());
 		addSettingInfoDto.setTireId(addSettingInfo.getTireId());
 		addSettingInfoDto.setTitle(addSettingInfo.getTitle());
-		addSettingInfoDto.setUserId(addSettingInfo.getUserId());
-				
+		addSettingInfoDto.setUserId(addSettingInfo.getUserId());		
 		
 		try {
 			insertCount = settingInfoService.insert(addSettingInfoDto);
 		} catch(Exception e) {
 			throw e;
 		}
+		
+		//追加した設定情報が1件の場合、true
+		boolean insertSucessFlag = insertCount == 1 ? true : false;
+		
 		HttpHeaders headers = new HttpHeaders();
 		
-		ResponseEntity<Integer> resEntity = new ResponseEntity<>(insertCount,headers,HttpStatus.CREATED); 
+		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(insertSucessFlag,headers,HttpStatus.CREATED); 
 		return resEntity;
 	}
 

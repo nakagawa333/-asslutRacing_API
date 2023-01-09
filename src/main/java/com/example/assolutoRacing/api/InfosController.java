@@ -68,7 +68,7 @@ public class InfosController {
 		infosBean.setTireTypeList(tireTypeList);
 
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<InfosBean> resEntity = new ResponseEntity<>(infosBean,headers,HttpStatus.CREATED); 
+		ResponseEntity<InfosBean> resEntity = new ResponseEntity<>(infosBean,headers,HttpStatus.OK); 
 		return resEntity;
 	}
 }

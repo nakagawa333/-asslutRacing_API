@@ -45,14 +45,13 @@ public class SignupController {
 	
 	@RequestMapping(path = "/signup", method = RequestMethod.POST)
 	@Transactional
-	public ResponseEntity<Object> signup(@RequestBody(required = true) @Validated TempUserBean tempUserBean,UriComponentsBuilder builder){
+	public ResponseEntity<Boolean> signup(@RequestBody(required = true) @Validated TempUserBean tempUserBean,UriComponentsBuilder builder){
 		
 		//トークン
 		String token = "";
 		try {
 			token = tokenService.createToken(tempUserBean.getMail());
 		} catch(Exception e) {
-			e.printStackTrace();
 			throw e;
 		}
 		
@@ -78,12 +77,14 @@ public class SignupController {
 			//メール認証
 			mailService.send(tempUserBean.getMail(),"assolutoracingses@gmail.com", "アカウント認証をお願い致します。", textBody);
 		} catch(Exception e) {
-			e.printStackTrace();
 			throw e;
 		}
 		
+		boolean insertSucessFlag;
+		insertSucessFlag = insertCount == 1 ? true : false;
+		
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<Object> resEntity = new ResponseEntity<>(headers,HttpStatus.OK); 
+		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(insertSucessFlag,headers,HttpStatus.OK); 
 		return resEntity;
 	}
 }

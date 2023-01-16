@@ -33,7 +33,7 @@ public class HomeController {
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<List<SettingInfoDto>> resEntity = new ResponseEntity<>(settingInfoList,headers,HttpStatus.CREATED); 
+		ResponseEntity<List<SettingInfoDto>> resEntity = new ResponseEntity<>(settingInfoList,headers,HttpStatus.OK); 
 		return resEntity;
 	}
 

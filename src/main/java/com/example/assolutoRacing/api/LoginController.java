@@ -62,7 +62,7 @@ public class LoginController {
 			throw e;
 		}
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<AuthUserRes> resEntity = new ResponseEntity<>(user,headers,HttpStatus.CREATED); 
+		ResponseEntity<AuthUserRes> resEntity = new ResponseEntity<>(user,headers,HttpStatus.OK); 
 		return resEntity;
 	}
 }

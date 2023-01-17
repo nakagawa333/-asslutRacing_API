@@ -34,14 +34,14 @@ public class LoginController {
 	UserService userService;
 	
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public ResponseEntity<AuthUserRes> login(@RequestBody(required = true) @Validated AuthUserBean authUserBean){
+	public ResponseEntity<AuthUserRes> login(@RequestBody(required = true) @Validated AuthUserBean authUserBean) throws Exception{
 		AuthUserRes user = new AuthUserRes();
 		
 		String userName = authUserBean.getUserName();
 		String mail = authUserBean.getMail();
 		
 		if(StringUtils.isEmpty(mail) && StringUtils.isEmpty(userName)) {
-			throw new NullPointerException("ユーザー名とパスワードの値がありません。");
+			throw new Exception("ユーザー名とパスワードの値がありません。");
 		}
 		//パスワードをハッシュ化
 		String password = DigestUtils.sha256Hex(authUserBean.getPassword());

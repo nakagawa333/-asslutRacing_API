@@ -39,7 +39,7 @@ public class SelectUserController {
 
 		
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<Integer> resEntity = new ResponseEntity<>(userCount,headers,HttpStatus.CREATED); 
+		ResponseEntity<Integer> resEntity = new ResponseEntity<>(userCount,headers,HttpStatus.OK); 
 		return resEntity;
 	}
 }

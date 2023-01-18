@@ -46,4 +46,11 @@ public interface UserMapper {
 	 * @return 更新件数
 	 */
 	Integer updatePassword(UpdatePasswordDto updatePassword);
+	
+	/**
+	 * ユーザー名を条件にユーザー件数を取得する
+	 * @param userName ユーザー名
+	 * @return ユーザー件数
+	 */
+	Integer selectByUserName(String userName);
 }

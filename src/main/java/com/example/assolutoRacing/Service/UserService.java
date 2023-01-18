@@ -91,4 +91,19 @@ public class UserService {
 		}
 		return updateCount;
 	}
+	
+	/**
+	 * ユーザー名からユーザー件数を検索する
+	 * @param userName ユーザー名
+	 * @return ユーザー件数
+	 */
+	public Integer selectByUserName(String userName) {
+		int userCount = 0;
+		try {
+			userCount = userMapper.selectByUserName(userName);
+		} catch(Exception e) {
+			throw e;
+		}
+		return userCount;
+	}
 }

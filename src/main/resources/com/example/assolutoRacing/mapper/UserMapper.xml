@@ -98,4 +98,15 @@
        mail = #{mail}
      </where>
   </update>
+  
+  <select id="selectByUserName" resultType="Integer">
+    select
+    COUNT(*)
+    from user
+    <if test="userName != '' and userName != null">
+      <where>
+         user_name = #{userName}
+      </where>
+    </if>
+  </select>
 </mapper>

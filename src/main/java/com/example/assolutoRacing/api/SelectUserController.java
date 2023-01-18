@@ -1,5 +1,6 @@
 package com.example.assolutoRacing.api;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.assolutoRacing.Bean.SelectUserBean;
+import com.example.assolutoRacing.Bean.UserNameBean;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Service.UserService;
 
@@ -27,16 +29,18 @@ public class SelectUserController {
 	@Autowired
 	UserService userService;
 		
-	@RequestMapping(path = "/select/user", method = RequestMethod.POST)
-	public ResponseEntity<Integer> selectUser(@RequestBody(required = true) SelectUserBean selectUserBean){
+	@RequestMapping(path = "/select/user", method = RequestMethod.GET)
+	public ResponseEntity<Integer> selectUser(@RequestParam(value = "userName" String userName){
 		int userCount = 0;
+		String userName = userNameBean.getUserName();
 		
-		try {
-			userCount = userService.select(selectUserBean);
-		} catch(Exception e) {
-			throw e;
+		if(StringUtils.isNoneEmpty(userName)) {
+			try {
+				userCount = userService.selectByUserName(userName);
+			} catch(Exception e) {
+				throw e;
+			}			
 		}
-
 		
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<Integer> resEntity = new ResponseEntity<>(userCount,headers,HttpStatus.OK); 

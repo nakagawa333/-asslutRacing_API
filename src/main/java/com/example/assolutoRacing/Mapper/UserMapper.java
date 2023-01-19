@@ -53,4 +53,13 @@ public interface UserMapper {
 	 * @return ユーザー件数
 	 */
 	Integer selectByUserName(String userName);
+	
+	/**
+	 * メールを条件にユーザー件数を取得する
+	 * @param mail メール
+	 * @return ユーザー件数
+	 * @param mail
+	 * @return
+	 */
+	Integer selectByMail(String mail);
 }

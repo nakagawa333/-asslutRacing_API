@@ -109,4 +109,15 @@
       </where>
     </if>
   </select>
+  
+  <select id="selectByMail" resultType="Integer">
+    select
+    COUNT(*)
+    from user
+    <if test="mail != '' and userName != null">
+      <where>
+         mail = #{mail}
+      </where>
+    </if>
+  </select>
 </mapper>

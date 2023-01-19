@@ -93,7 +93,7 @@ public class UserService {
 	}
 	
 	/**
-	 * ユーザー名からユーザー件数を検索する
+	 * ユーザー名からユーザー件数を取得する
 	 * @param userName ユーザー名
 	 * @return ユーザー件数
 	 */
@@ -101,6 +101,21 @@ public class UserService {
 		int userCount = 0;
 		try {
 			userCount = userMapper.selectByUserName(userName);
+		} catch(Exception e) {
+			throw e;
+		}
+		return userCount;
+	}
+	
+	/**
+	 * メールからユーザー件数を取得する
+	 * @param mail メール
+	 * @return ユーザー件数
+	 */
+	public Integer selectByMail(String mail) {
+		int userCount = 0;
+		try {
+			userCount = userMapper.selectByMail(mail);
 		} catch(Exception e) {
 			throw e;
 		}

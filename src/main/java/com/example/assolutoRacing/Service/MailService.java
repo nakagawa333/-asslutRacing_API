@@ -8,7 +8,8 @@ import com.amazonaws.services.simpleemail.model.Body;
 import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
-import com.amazonaws.services.simpleemail.model.SendEmailRequest; 
+import com.amazonaws.services.simpleemail.model.SendEmailRequest;
+import com.amazonaws.services.simpleemail.model.SendEmailResult; 
 
 
 /**
@@ -28,6 +29,7 @@ public class MailService {
 	 */
 	public void send(String to,String from,String subject,String textbody) {
 		
+		SendEmailResult sendEmailResult = null;
 		try {
 		      AmazonSimpleEmailService client = 
 		              AmazonSimpleEmailServiceClientBuilder.standard()
@@ -42,7 +44,7 @@ public class MailService {
 		            				  .withCharset("UTF-8").withData(subject)))
 		              .withSource(from);
 //		              .withConfigurationSetName(CONFIGSET);
-		      client.sendEmail(request);
+		      sendEmailResult = client.sendEmail(request);
 		} catch(Exception e) {
 			throw e;
 		}

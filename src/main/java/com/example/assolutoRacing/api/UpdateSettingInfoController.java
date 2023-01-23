@@ -4,6 +4,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +32,7 @@ public class UpdateSettingInfoController {
 	
 	@RequestMapping(path = "/update", method = RequestMethod.PUT)
 	@Transactional
-	public ResponseEntity<Boolean> update(@RequestBody(required = true) UpdateSettingInfoBean updateSettingInfo) {
+	public ResponseEntity<Boolean> update(@RequestBody(required = true) UpdateSettingInfoBean updateSettingInfo) throws Exception {
 		int updateCount = 0;
 		
 		UpdateSettingInfoDto updateSettingInfoDto = new UpdateSettingInfoDto();
@@ -70,7 +73,7 @@ public class UpdateSettingInfoController {
 		try {
 			updateCount = settingInfoService.update(updateSettingInfoDto);
 		} catch(Exception e) {
-			throw e;
+			throw new SQLException("設定情報の更新に失敗しました");
 		}
 		
 		//更新件数が1件の場合成功

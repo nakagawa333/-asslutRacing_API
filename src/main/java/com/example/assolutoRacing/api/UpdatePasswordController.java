@@ -55,7 +55,7 @@ public class UpdatePasswordController {
 			//トークンを条件にメールを取得する。
 			mail = passwordResetService.selectByToken(updatePasswordBean.getToken());
 		} catch(Exception e) {
-			throw new SQLException("メールの取得に失敗しました。");
+			throw new SQLException("メールの取得に失敗しました");
 		}
 		
 		UpdatePasswordDto updatePasswordDto = new UpdatePasswordDto();
@@ -71,7 +71,7 @@ public class UpdatePasswordController {
 		}
 		
 		if(updateCount == 0) {
-			throw new SQLException("該当のメールメールアドレスのユーザーが存在しませんでした。");
+			throw new SQLException("該当のメールメールアドレスのユーザーが存在しませんでした");
 		}
 		
 		//メールの更新件数が1件の場合、true

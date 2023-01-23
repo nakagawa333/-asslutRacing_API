@@ -13,7 +13,7 @@ public class TempUserBean {
 	@NotBlank
 	private String userName;
 	//メール
-//	@Pattern(regexp = Constants.REGEX.MAIL)
+	@Pattern(regexp = Constants.REGEX.MAIL)
 	private String mail;
 	//パスワード
 	@NotBlank

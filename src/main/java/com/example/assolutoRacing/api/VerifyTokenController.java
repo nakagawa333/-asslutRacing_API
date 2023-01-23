@@ -1,5 +1,7 @@
 package com.example.assolutoRacing.api;
 
+import java.sql.SQLException;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,12 +47,11 @@ public class VerifyTokenController {
 			//トークンを条件に仮ユーザー情報を取得する.
 			tempUser = tempUserService.selectByToken(token);
 		} catch(Exception e) {
-			e.printStackTrace();
-			throw e;
+			throw new Exception("仮ユーザー情報の取得に失敗しました");
 		}
 		
 		if(tempUser == null) {
-			throw new Exception("仮ユーザーが存在しません");
+			throw new SQLException("仮ユーザーが存在しません");
 		}
 				
 		RegistUserDto registUser = new RegistUserDto();
@@ -63,12 +64,11 @@ public class VerifyTokenController {
 			//ユーザーを登録する
 			insertUserCount = userService.insert(registUser);
 		} catch(Exception e) {
-			e.printStackTrace();
-			throw e;
+			throw new SQLException("ユーザー登録に失敗しました");
 		}
 		
 		if(insertUserCount == 0) {
-			throw new Exception("ユーザー登録に失敗しました");
+			throw new SQLException("ユーザー登録に失敗しました");
 		}
 		
 		boolean insertUserSucessFlag = insertUserCount == 1 ? true : false;

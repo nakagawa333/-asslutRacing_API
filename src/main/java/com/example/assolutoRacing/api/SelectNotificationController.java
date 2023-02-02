@@ -26,7 +26,6 @@ import com.example.assolutoRacing.Enum.DateUtil;
  * @author nakaagwa.so
  *
  */
-@CrossOrigin(origins = Constants.ORIGINS)
 @RestController
 public class SelectNotificationController {
 	@Autowired

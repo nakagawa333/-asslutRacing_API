@@ -26,7 +26,7 @@ import org.apache.commons.lang3.StringUtils;
  * ログインコントローラークラス
  *
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class LoginController {
 	

@@ -22,7 +22,7 @@ import com.example.assolutoRacing.Service.SettingInfoService;
  * @author nakagawa.so
  * 設定情報登録コントローラークラス
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class AddSettingInfoController{
 	@Autowired

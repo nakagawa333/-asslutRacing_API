@@ -24,7 +24,7 @@ import com.example.assolutoRacing.Service.UserService;
  * ユーザー登録情報コントローラークラス
  *
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class AddUserController {
 	

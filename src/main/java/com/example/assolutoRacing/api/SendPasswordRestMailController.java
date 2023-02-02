@@ -36,7 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
  * パスワードリセットメール送信コントローラークラス
  *
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class SendPasswordRestMailController {
 	

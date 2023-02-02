@@ -24,7 +24,7 @@ import lombok.Data;
  * @author nakagawa.so
  *
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class DeleteSettingInfoController {
 	@Autowired

@@ -24,7 +24,7 @@ import com.example.assolutoRacing.Service.SettingInfoService;
  * @author nakagawa.so
  * 設定情報更新コントローラークラス
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class UpdateSettingInfoController {	
 	@Autowired

@@ -20,7 +20,7 @@ import com.example.assolutoRacing.Service.InfosService;
 import com.example.assolutoRacing.Dto.SelectMakerDto;
 import com.example.assolutoRacing.Dto.SelectTireTypeDto;
 
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class InfosController {
 	@Autowired

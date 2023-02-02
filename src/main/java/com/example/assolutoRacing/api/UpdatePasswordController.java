@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author nakagawa.so
  * パスワード更新コントローラークラス
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class UpdatePasswordController {
 	

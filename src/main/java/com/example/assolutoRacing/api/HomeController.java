@@ -16,7 +16,7 @@ import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.SettingInfoDto;
 import com.example.assolutoRacing.Service.SettingInfoService;
 
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class HomeController {
 	@Autowired

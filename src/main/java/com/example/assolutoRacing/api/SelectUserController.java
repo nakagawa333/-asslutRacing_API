@@ -20,7 +20,7 @@ import com.example.assolutoRacing.Service.UserService;
  * ユーザー情報検索コントローラークラス
  *
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class SelectUserController {
 	

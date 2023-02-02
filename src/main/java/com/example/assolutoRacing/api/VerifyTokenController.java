@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author nakagawa.so
  * トークン確認コントローラークラス
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class VerifyTokenController {
 	

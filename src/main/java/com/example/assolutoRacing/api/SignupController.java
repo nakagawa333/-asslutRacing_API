@@ -36,7 +36,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  * サインアップコントローラークラス
  *
  */
-@CrossOrigin(origins = Constants.ORIGINS)
+
 @RestController
 public class SignupController {
 	

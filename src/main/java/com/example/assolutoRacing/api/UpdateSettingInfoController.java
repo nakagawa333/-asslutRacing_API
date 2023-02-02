@@ -31,7 +31,7 @@ public class UpdateSettingInfoController {
 	SettingInfoService settingInfoService;
 	
 	@RequestMapping(path = "/update", method = RequestMethod.PUT)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<Boolean> update(@RequestBody(required = true) UpdateSettingInfoBean updateSettingInfo) throws Exception {
 		int updateCount = 0;
 		

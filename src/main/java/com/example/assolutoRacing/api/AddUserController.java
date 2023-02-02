@@ -32,7 +32,7 @@ public class AddUserController {
 	UserService userService;
 	
 	@RequestMapping(path = "/add/user", method = RequestMethod.POST)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<Integer> addUser(@RequestBody(required = true) @Validated RegistUserBean registUserBean){
 		int insertCount = 0;
 		

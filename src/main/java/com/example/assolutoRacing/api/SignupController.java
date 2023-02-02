@@ -53,7 +53,7 @@ public class SignupController {
 	TempUserService tempUserService;
 	
 	@RequestMapping(path = "/signup", method = RequestMethod.POST)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<Boolean> signup(@RequestBody(required = true) @Validated TempUserBean tempUserBean) throws Exception{
 		
 		//トークン

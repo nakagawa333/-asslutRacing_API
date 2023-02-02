@@ -39,7 +39,7 @@ public class VerifyTokenController {
 	TempUserService tempUserService;
 	
 	@RequestMapping(path = "/verify/token", method = RequestMethod.POST)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<Boolean> verifyToken(@RequestBody(required = true) String token) throws Exception{
 		SelectTempUserDto tempUser = new SelectTempUserDto();
 		

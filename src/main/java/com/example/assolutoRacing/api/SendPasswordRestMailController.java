@@ -56,7 +56,7 @@ public class SendPasswordRestMailController {
 	PasswordResetService passwordResetService;
 	
 	@RequestMapping(path = "/password/reset", method = RequestMethod.POST)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public <T> ResponseEntity<T> submitSendPasswordResetMailForm(@RequestBody(required = true) @Validated SendPasswordRestMailBean sendPasswordRestMailBean) throws Exception{
 		int userCount = 0;
 		

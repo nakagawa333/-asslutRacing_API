@@ -29,7 +29,7 @@ public class AddSettingInfoController{
 	SettingInfoService settingInfoService;
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<Boolean> add(@RequestBody(required = true) @Validated AddSettingInfoBean addSettingInfo) {
 		int insertCount = 0;
 				

@@ -44,7 +44,7 @@ public class UpdatePasswordController {
 	PasswordResetService passwordResetService;
 	
 	@RequestMapping(path = "/password/update", method = RequestMethod.PUT)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<Boolean> updatePassword(@RequestBody(required = true) UpdatePasswordBean updatePasswordBean) throws Exception{
 		//パスワードをハッシュ化
 		String password = DigestUtils.sha256Hex(updatePasswordBean.getPassword());

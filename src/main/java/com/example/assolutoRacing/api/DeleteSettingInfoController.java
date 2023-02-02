@@ -31,7 +31,7 @@ public class DeleteSettingInfoController {
 	SettingInfoService settingInfoService;
 	
 	@RequestMapping(path = "/delete", method = RequestMethod.PUT)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public ResponseEntity<Boolean> delete(@RequestBody(required = true) Request req) {
 		int deleteCount = 0;
 		

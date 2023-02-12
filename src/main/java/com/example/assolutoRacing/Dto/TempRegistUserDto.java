@@ -10,6 +10,8 @@ public class TempRegistUserDto {
 	private String mail;
 	/*認証トークン*/
 	private String authToken;
-	/** パスワード **/
+	/** パスワード(ハッシュ化後) **/
 	private String password;
+	/** パスワードの文字数 **/
+	private Integer passwordLetters;
 }

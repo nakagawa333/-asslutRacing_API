@@ -58,6 +58,7 @@ public class VerifyTokenController {
 		registUser.setMail(tempUser.getMail());
 		registUser.setPassword(tempUser.getPassword());
 		registUser.setUserName(tempUser.getUserName());
+		registUser.setPasswordLetters(tempUser.getPasswordLetters());
 		
 		int insertUserCount = 0;
 		try {

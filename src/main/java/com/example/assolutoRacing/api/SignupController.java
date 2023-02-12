@@ -2,7 +2,6 @@ package com.example.assolutoRacing.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,13 +13,11 @@ import com.amazonaws.services.simpleemail.model.ConfigurationSetSendingPausedExc
 import com.amazonaws.services.simpleemail.model.MailFromDomainNotVerifiedException;
 import com.amazonaws.services.simpleemail.model.MessageRejectedException;
 import com.example.assolutoRacing.Bean.TempUserBean;
-import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.TempRegistUserDto;
 import com.example.assolutoRacing.Service.MailService;
 import com.example.assolutoRacing.Service.TempUserService;
 import com.example.assolutoRacing.Service.TokenService;
 import com.example.assolutoRacing.Service.UserService;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +66,7 @@ public class SignupController {
 		tempRegistUserDto.setPassword(DigestUtils.sha256Hex(tempUserBean.getPassword()));
 		tempRegistUserDto.setMail(tempUserBean.getMail());
 		tempRegistUserDto.setAuthToken(token);
+		tempRegistUserDto.setPasswordLetters(tempUserBean.getPassword().length());
 		
 		int insertCount = 0;
 		try {

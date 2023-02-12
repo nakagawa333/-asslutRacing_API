@@ -17,6 +17,7 @@
      user_name,
      password,
      mail,
+     password_letters,
      create_time,
      update_time,
      delete_flag
@@ -25,6 +26,7 @@
      #{userName},
      #{password},
      #{mail},
+     #{passwordLetters},
      NOW(),
      NOW(),
      false
@@ -119,5 +121,16 @@
          mail = #{mail}
       </where>
     </if>
+  </select>
+  
+  <select id="selectByUserId" resultType="com.example.assolutoRacing.Bean.UserRes">
+	  select 
+	   user_name AS userName,
+	   password AS password,
+	   mail
+	  from user
+	  <where>
+		  user_id= #{userId}
+	  </where>
   </select>
 </mapper>

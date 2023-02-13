@@ -10,4 +10,6 @@ public class SelectTempUserDto {
 	private String mail;
 	//パスワード
 	private String password;
+	//パスワードの文字数
+	private Integer passwordLetters;
 }

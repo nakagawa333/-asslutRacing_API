@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Bean.SelectUserBean;
+import com.example.assolutoRacing.Bean.UserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 import com.example.assolutoRacing.Dto.UpdatePasswordDto;
@@ -62,4 +63,11 @@ public interface UserMapper {
 	 * @return
 	 */
 	Integer selectByMail(String mail);
+	
+	/**
+	 * ユーザーidを条件にユーザー情報を取得する
+	 * @param userId ユーザーid
+	 * @return
+	 */
+	UserRes selectByUserId(int userId);
 }

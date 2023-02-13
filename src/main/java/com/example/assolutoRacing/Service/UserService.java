@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Bean.SelectUserBean;
+import com.example.assolutoRacing.Bean.UserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 import com.example.assolutoRacing.Dto.UpdatePasswordDto;
@@ -120,5 +121,21 @@ public class UserService {
 			throw e;
 		}
 		return userCount;
+	}
+	
+	/**
+	 * ユーザーidを条件にユーザー情報を取得する
+	 * @param userId ユーザーid
+	 * @return
+	 */
+	public UserRes selectbyUserId(int userId) {
+		UserRes userRes = new UserRes();
+		
+		try {
+			userRes = userMapper.selectByUserId(userId);
+		} catch(Exception e) {
+			throw e;
+		}
+		return userRes;
 	}
 }

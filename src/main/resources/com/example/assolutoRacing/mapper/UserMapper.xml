@@ -126,7 +126,7 @@
   <select id="selectByUserId" resultType="com.example.assolutoRacing.Bean.UserRes">
 	  select 
 	   user_name AS userName,
-	   password AS password,
+	   password_letters AS passwordLetters,
 	   mail
 	  from user
 	  <where>

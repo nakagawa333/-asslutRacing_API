@@ -9,6 +9,7 @@ import com.example.assolutoRacing.Bean.UserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 import com.example.assolutoRacing.Dto.UpdatePasswordDto;
+import com.example.assolutoRacing.Dto.UpdateUserDto;
 import com.example.assolutoRacing.Mapper.UserMapper;
 
 /**
@@ -137,5 +138,21 @@ public class UserService {
 			throw e;
 		}
 		return userRes;
+	}
+	
+	/**
+	 * ユーザー名を更新する
+	 * @param updateUserDto ユーザー名更新用Dtoクラス
+	 * @return 更新件数
+	 */
+	public Integer updateUserName(UpdateUserDto updateUserDto) {
+		int userUpdateCount = 0;
+		
+		try {
+			userUpdateCount = userMapper.updateUserName(updateUserDto);
+		} catch(Exception e) {
+			throw e;
+		}
+		return userUpdateCount;
 	}
 }

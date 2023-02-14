@@ -38,7 +38,7 @@ public class UpdateUserController {
 	 * @return 
 	 * @throws Exception
 	 */
-	@RequestMapping(path = "/update/user/username", method = RequestMethod.POST)
+	@RequestMapping(path = "/update/user/username", method = RequestMethod.PUT)
 	public ResponseEntity<Boolean> updateUserName(@RequestBody(required = true) @Validated UpdateUserBean updateUserBean) throws Exception {
 		int userCount = 0;
 		

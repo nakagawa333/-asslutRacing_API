@@ -13,7 +13,7 @@ import lombok.Data;
  *
  */
 @Data
-public class UpdateUserBean {
+public class UpdateUserNameBean {
 	
 	@NotNull
 	//ユーザーid

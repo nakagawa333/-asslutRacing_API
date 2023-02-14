@@ -3,7 +3,7 @@ package com.example.assolutoRacing.Dto;
 import lombok.Data;
 
 @Data
-public class UpdateUserDto {
+public class UpdateUserNameDto {
 	//ユーザーid
 	private Integer userId;
 	

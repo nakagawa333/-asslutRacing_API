@@ -8,7 +8,7 @@ import com.example.assolutoRacing.Bean.UserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
 import com.example.assolutoRacing.Dto.RegistUserDto;
 import com.example.assolutoRacing.Dto.UpdatePasswordDto;
-import com.example.assolutoRacing.Dto.UpdateUserDto;
+import com.example.assolutoRacing.Dto.UpdateUserNameDto;
 
 /**
  * @author nakagawa.so
@@ -77,5 +77,5 @@ public interface UserMapper {
 	 * @param updateUserDto　ユーザー名更新用Dtoクラス
 	 * @return 更新件数
 	 */
-	Integer updateUserName(UpdateUserDto updateUserDto);
+	Integer updateUserName(UpdateUserNameDto updateUserNameDto);
 }

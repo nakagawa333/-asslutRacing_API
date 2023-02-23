@@ -3,6 +3,7 @@ package com.example.assolutoRacing.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.assolutoRacing.Bean.SelectUpdateMailDto;
 import com.example.assolutoRacing.Dto.RegistPasswordResetDto;
 import com.example.assolutoRacing.Dto.UpdateMailDto;
 import com.example.assolutoRacing.Mapper.MailUpdateMapper;
@@ -34,5 +35,21 @@ public class MailUpdateService {
 			throw e;
 		}
 		return insertCount;
+	}
+	
+	/**
+	 * トークンからメール更新情報を取得する
+	 * @param token トークン
+	 * @return
+	 */
+	public SelectUpdateMailDto selectByToken(String token) {
+		SelectUpdateMailDto selectUpdateMailDto = new SelectUpdateMailDto();
+		try {
+			selectUpdateMailDto = mailUpdateMapper.selectByToken(token);
+		} catch(Exception e) {
+			throw e;
+		}
+		
+		return selectUpdateMailDto;
 	}
 }

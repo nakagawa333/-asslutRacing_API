@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.assolutoRacing.Bean.AuthUserRes;
+import com.example.assolutoRacing.Bean.SelectUpdateMailDto;
 import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Bean.UserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
@@ -154,5 +155,22 @@ public class UserService {
 			throw e;
 		}
 		return userUpdateCount;
+	}
+	
+	/**
+	 * メールを更新する
+	 * @param selectUpdateMailDto
+	 * @return 更新件数
+	 */
+	public Integer updateMail(SelectUpdateMailDto selectUpdateMailDto) {
+		int mailUpdateCount = 0;
+		
+		try {
+			mailUpdateCount = userMapper.updateMail(selectUpdateMailDto);
+		} catch(Exception e) {
+			throw e;
+		}
+		
+		return mailUpdateCount;
 	}
 }

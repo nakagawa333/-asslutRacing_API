@@ -1,5 +1,6 @@
 package com.example.assolutoRacing.api;
 
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import com.example.assolutoRacing.Service.TokenService;
 import com.example.assolutoRacing.Service.UserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -133,6 +135,7 @@ public class SendMailUpdateMailController {
 		sendMailUpdateMailRes.setMail(mail);
 		
 		HttpHeaders headers = new HttpHeaders();
+		headers.add("Connection", "Keep-Alive");
 		ResponseEntity<SendMailUpdateMailRes> resEntity = new ResponseEntity<>(sendMailUpdateMailRes,headers,HttpStatus.OK); 
 		return resEntity;
 	}

@@ -20,4 +20,18 @@
      #{userId}
     )
   </insert>
+  
+  <select id="selectByToken" resultType="com.example.assolutoRacing.Bean.SelectUpdateMailDto">
+	  select
+	   mail,
+	   token,
+	   user_id AS userId
+	  from
+	  mail_update
+	  <where>
+		  token = #{token}
+		  and
+		  create_time >= DATE_SUB(NOW(),INTERVAL 24 HOUR);
+	  </where>
+  </select>
 </mapper>

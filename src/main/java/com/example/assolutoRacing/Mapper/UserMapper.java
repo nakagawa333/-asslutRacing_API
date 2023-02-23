@@ -3,6 +3,7 @@ package com.example.assolutoRacing.Mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.assolutoRacing.Bean.AuthUserRes;
+import com.example.assolutoRacing.Bean.SelectUpdateMailDto;
 import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Bean.UserRes;
 import com.example.assolutoRacing.Dto.AuthUserDto;
@@ -78,4 +79,12 @@ public interface UserMapper {
 	 * @return 更新件数
 	 */
 	Integer updateUserName(UpdateUserNameDto updateUserNameDto);
+	
+	/**
+	 * メールを更新する
+	 * @param selectUpdateMailDto
+	 * @return　更新件数
+	 */
+	Integer updateMail(SelectUpdateMailDto selectUpdateMailDto);
+	
 }

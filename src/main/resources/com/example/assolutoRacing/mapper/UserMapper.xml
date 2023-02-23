@@ -146,4 +146,17 @@
 	  </where>
 	  
   </update>
+  
+  <update id="updateMail">
+	  update
+	  user
+	  <set>
+		mail = #{mail},
+		update_time = now()  
+	  </set>
+	  <where>
+		  user_id = #{userId}
+	  </where>
+  </update>
+  
 </mapper>

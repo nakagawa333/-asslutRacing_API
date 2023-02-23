@@ -21,6 +21,7 @@ import com.example.assolutoRacing.Bean.SelectUserBean;
 import com.example.assolutoRacing.Bean.SendMailUpdateMailBean;
 import com.example.assolutoRacing.Bean.SendMailUpdateMailRes;
 import com.example.assolutoRacing.Bean.SendPasswordRestMailBean;
+import com.example.assolutoRacing.Bean.UserRes;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.RegistPasswordResetDto;
 import com.example.assolutoRacing.Dto.UpdateMailDto;
@@ -73,6 +74,18 @@ public class SendMailUpdateMailController {
 		//ユーザーid
 		int userId = sendMailUpdateMailBean.getUserId();
 		
+		//ユーザーidからユーザーを取得
+		UserRes user = new UserRes();
+		try {
+			user = userService.selectbyUserId(userId);
+		} catch(Exception e) {
+			throw new Exception("ユーザー取得に失敗しました");
+		}
+		//ユーザー
+		if(user == null) {
+			throw new Exception("不正なアクセスです。ログインしなおしてください。");
+		}
+		
 		try {
 			userCount = userService.selectByMail(mail);
 		} catch(Exception e) {
@@ -80,7 +93,7 @@ public class SendMailUpdateMailController {
 		}
 		
 		if(1 <= userCount) {
-			throw new Exception("既にユーザーは存在します");
+			throw new Exception("入力されたメールアドレスは既に使用されています。");
 		}
 		
 		String token = "";

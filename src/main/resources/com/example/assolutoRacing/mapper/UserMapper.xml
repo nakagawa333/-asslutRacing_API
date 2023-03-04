@@ -127,7 +127,9 @@
 	  select 
 	   user_name AS userName,
 	   password_letters AS passwordLetters,
-	   mail
+	   mail,
+	   user_id As userId,
+	   password
 	  from user
 	  <where>
 		  user_id= #{userId}

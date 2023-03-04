@@ -10,4 +10,8 @@ public class UserRes {
 	private Integer passwordLetters;
 	//メール
 	private String mail;
+	//ユーザーid
+	private Integer userId;
+	//パスワード
+	private String password;
 }

@@ -12,6 +12,4 @@ public class TempRegistUserDto {
 	private String authToken;
 	/** パスワード(ハッシュ化後) **/
 	private String password;
-	/** パスワードの文字数 **/
-	private Integer passwordLetters;
 }

@@ -66,7 +66,6 @@ public class SignupController {
 		tempRegistUserDto.setPassword(DigestUtils.sha256Hex(tempUserBean.getPassword()));
 		tempRegistUserDto.setMail(tempUserBean.getMail());
 		tempRegistUserDto.setAuthToken(token);
-		tempRegistUserDto.setPasswordLetters(tempUserBean.getPassword().length());
 		
 		int insertCount = 0;
 		try {

@@ -53,12 +53,11 @@ public class VerifyTokenController {
 		if(tempUser == null) {
 			throw new SQLException("仮ユーザーが存在しません");
 		}
-				
+		
 		RegistUserDto registUser = new RegistUserDto();
 		registUser.setMail(tempUser.getMail());
 		registUser.setPassword(tempUser.getPassword());
 		registUser.setUserName(tempUser.getUserName());
-		registUser.setPasswordLetters(tempUser.getPasswordLetters());
 		
 		int insertUserCount = 0;
 		try {

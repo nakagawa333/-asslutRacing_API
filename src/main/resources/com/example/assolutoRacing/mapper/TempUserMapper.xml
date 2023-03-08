@@ -18,7 +18,6 @@
      mail,
      auth_token,
      password,
-     password_letters,
      create_time
     )
     values(
@@ -26,7 +25,6 @@
      #{mail},
      #{authToken},
      #{password},
-     #{passwordLetters},
      NOW()
     )
   </insert>
@@ -36,8 +34,7 @@
      select 
         user_name AS userName,
         mail,
-        password,
-        password_letters AS passwordLetters
+        password
      from temp_user
      <where>
         auth_token = #{token}

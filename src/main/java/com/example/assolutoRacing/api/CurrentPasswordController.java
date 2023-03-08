@@ -17,9 +17,6 @@ import com.example.assolutoRacing.Service.PasswordResetService;
 import com.example.assolutoRacing.Service.TempUserService;
 import com.example.assolutoRacing.Service.TokenService;
 import com.example.assolutoRacing.Service.UserService;
-
-import lombok.Data;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -10,6 +10,4 @@ public class RegistUserDto {
 	private String password;
 	/** メール **/
 	private String mail;
-	/** パスワードの文字数 **/
-	private Integer passwordLetters;
 }

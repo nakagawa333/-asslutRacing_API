@@ -12,15 +12,8 @@ import com.example.assolutoRacing.Constants.Constants;
 @SpringBootApplication
 @ComponentScan
 @EnableScheduling
-public class DemoApplication implements WebMvcConfigurer{
+public class DemoApplication{
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-	}
-	
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-	    registry.addMapping("/**")
-	    .allowedOrigins(Constants.ORIGINS)
-        .allowedMethods("GET", "POST", "PUT", "DELETE");
 	}
 }

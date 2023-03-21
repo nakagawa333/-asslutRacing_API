@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +17,12 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import com.example.assolutoRacing.Bean.AuthUserBean;
 import com.example.assolutoRacing.Bean.AuthUserRes;
+import com.example.assolutoRacing.Bean.LoginUserRes;
 import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.AuthUserDto;
+import com.example.assolutoRacing.Dto.CustromUserDetails;
+import com.example.assolutoRacing.Service.CustomAuthenticationManager;
+import com.example.assolutoRacing.Service.JwtUtil;
 import com.example.assolutoRacing.Service.UserService;
 import org.apache.commons.lang3.StringUtils;
 
@@ -33,8 +40,15 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	JwtUtil jwtUtil;
+	
+	@Autowired
+	CustomAuthenticationManager customAuthenticationManager;
+	
+	
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public ResponseEntity<AuthUserRes> login(@RequestBody(required = true) @Validated AuthUserBean authUserBean) throws Exception{
+	public ResponseEntity<LoginUserRes> login(@RequestBody(required = true) @Validated AuthUserBean authUserBean) throws Exception{
 		AuthUserRes user = new AuthUserRes();
 		
 		String userName = authUserBean.getUserName();
@@ -61,8 +75,18 @@ public class LoginController {
 		} catch(Exception e) {
 			throw e;
 		}
+		
+		CustromUserDetails custromUserDetails = new CustromUserDetails(user);
+		
+		LoginUserRes loginUserRes = new LoginUserRes();
+		loginUserRes.setPassword(user.getPassword());
+		loginUserRes.setUserName(user.getUserName());
+		loginUserRes.setUserId(user.getUserId());
+		
+		String jwtToken = jwtUtil.generateToken(custromUserDetails);
+		
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<AuthUserRes> resEntity = new ResponseEntity<>(user,headers,HttpStatus.OK); 
+		ResponseEntity<LoginUserRes> resEntity = new ResponseEntity<>(loginUserRes,headers,HttpStatus.OK); 
 		return resEntity;
 	}
 }

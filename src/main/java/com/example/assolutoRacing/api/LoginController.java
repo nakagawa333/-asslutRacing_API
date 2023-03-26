@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +37,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 
 @RestController
-public class LoginController {
+public class LoginController{
+	
+	private AuthenticationManager authenticationManager;
+
+	public LoginController(AuthenticationManager authenticationManager) {
+		this.authenticationManager = authenticationManager;
+	}
 	
 	@Autowired
 	UserService userService;
@@ -49,7 +57,7 @@ public class LoginController {
 	
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public ResponseEntity<LoginUserRes> login(@RequestBody(required = true) @Validated AuthUserBean authUserBean) throws Exception{
-		AuthUserRes user = new AuthUserRes();
+			AuthUserRes user = new AuthUserRes();
 		
 		String userName = authUserBean.getUserName();
 		String mail = authUserBean.getMail();
@@ -83,7 +91,11 @@ public class LoginController {
 		loginUserRes.setUserName(user.getUserName());
 		loginUserRes.setUserId(user.getUserId());
 		
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
 		String jwtToken = jwtUtil.generateToken(custromUserDetails);
+		loginUserRes.setToken(jwtToken);
 		
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<LoginUserRes> resEntity = new ResponseEntity<>(loginUserRes,headers,HttpStatus.OK); 

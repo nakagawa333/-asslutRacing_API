@@ -19,9 +19,18 @@ public class CustomUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) {
 		AuthUserRes authUserRes = new AuthUserRes();
 		
-		if(authUserRes == null) {
-			throw new UsernameNotFoundException("ユーザーが存在しません");
+		int userCount = 0;
+		try {
+			userCount = userService.selectByUserName(username);
+		} catch(Exception e) {
+			throw new RuntimeException("ユーザー情報の取得に失敗しました");
 		}
+		
+		if(userCount == 0) {
+			throw new UsernameNotFoundException("ユーザーが存在しませんでした");
+		}
+		
+		authUserRes.setUserName(username);
 		CustromUserDetails custromUserDetails = new CustromUserDetails(authUserRes);
 		return custromUserDetails;
 	}

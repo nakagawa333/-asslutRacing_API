@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.crypto.SecretKey;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -30,11 +31,14 @@ import io.jsonwebtoken.security.Keys;
 public class JwtUtil {
 	
 	public byte[] getKeyBytes() {
-		String base64SecretKey = "secretkeysecretkeysecretkeysecretkeysecretkeysecre";
-		byte[] keyBytes = Base64.getDecoder().decode(base64SecretKey);	
+		byte[] keyBytes = new byte[70];
 		return keyBytes;
 	}
 	
+	/**
+	 * シークレットキーを作成する
+	 * @return シークレットキー
+	 */
 	public SecretKey createKey() {
 		byte[] keyBytes = getKeyBytes();
 		return Keys.hmacShaKeyFor(keyBytes);
@@ -45,17 +49,43 @@ public class JwtUtil {
 		return createToken(cliams,userDetails.getUsername());
 	}
 	
+	/**
+	 * トークンを生成する。
+	 * @param cliams
+	 * @param username ユーザー名
+	 * @return jwtトークン
+	 */
 	public String createToken(Map<String,Object> cliams,String username) {
 		return Jwts.builder().setClaims(cliams).setSubject(username).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
 				.signWith(this.createKey(), SignatureAlgorithm.HS512).compact();
 	}
 	
+	/**
+	 * 
+	 * @param token　トークン
+	 * @param userDetails ユーザー情報
+	 * @return
+	 */
+	public boolean validateToken(String token,UserDetails userDetails) {
+		String username = this.getAuthentication(token).getSubject();
+		return StringUtils.equals(username,userDetails.getUsername());
+	}
+	
 	public Claims getAuthentication(String token) {
 		return Jwts.parserBuilder()
 				.setSigningKey(getKeyBytes())
 				.build()
-				.parseClaimsJwt(token)
+				.parseClaimsJws(token)
 				.getBody();
+	}
+	
+	/**
+	 * トークンからユーザー名を取得する
+	 * @param token トークン
+	 * @return ユーザー名
+	 */
+	public String extractUsername(String token) {
+		return this.getAuthentication(token).getSubject();
 	}
 }

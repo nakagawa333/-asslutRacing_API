@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.assolutoRacing.Bean.AuthUserRes;
 import com.example.assolutoRacing.Bean.UpdateUserNameBean;
 import com.example.assolutoRacing.Constants.Constants;
+import com.example.assolutoRacing.Dto.CustromUserDetails;
 import com.example.assolutoRacing.Dto.UpdateUserNameDto;
+import com.example.assolutoRacing.Dto.UpdateUserRes;
+import com.example.assolutoRacing.Service.JwtUtil;
 import com.example.assolutoRacing.Service.UserService;
 
 /**
@@ -33,6 +39,9 @@ public class UpdateUserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	JwtUtil jwtUtil;
+	
 	/**
 	 * ユーザー名を更新する
 	 * @param updateUserNameBean 更新用ユーザー名Beanクラス
@@ -41,7 +50,7 @@ public class UpdateUserController {
 	 */
 	@RequestMapping(path = "/update/user/username", method = RequestMethod.PUT)
 	@Transactional(rollbackFor = Exception.class)
-	public ResponseEntity<Boolean> updateUserName(@RequestBody(required = true) @Validated UpdateUserNameBean updateUserNameBean) throws Exception {
+	public ResponseEntity<UpdateUserRes> updateUserName(@RequestBody(required = true) @Validated UpdateUserNameBean updateUserNameBean) throws Exception {
 		int userCount = 0;
 		
 		try {
@@ -70,12 +79,20 @@ public class UpdateUserController {
 			throw new SQLException("ユーザー名更新に失敗しました");
 		}
 		
-		
 		boolean userUpdateSucessFlag = userUpdateCount == 1 ? true:false;
 		
+		AuthUserRes user = new AuthUserRes();
+		user.setUserName(updateUserNameBean.getUserName());
+		CustromUserDetails custromUserDetails = new CustromUserDetails(user);
+		
+		String jwtToken = jwtUtil.generateToken(custromUserDetails);
+		
+		UpdateUserRes updateUserRes = new UpdateUserRes();
+		updateUserRes.setAcessToken(jwtToken);
+		updateUserRes.setUserUpdateSucessFlag(userUpdateSucessFlag);
 
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<Boolean> resEntity = new ResponseEntity<>(userUpdateSucessFlag,headers,HttpStatus.CREATED); 
+		ResponseEntity<UpdateUserRes> resEntity = new ResponseEntity<>(updateUserRes,headers,HttpStatus.CREATED); 
 		return resEntity;
 	}
 	

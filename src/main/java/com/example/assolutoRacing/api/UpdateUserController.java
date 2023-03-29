@@ -1,6 +1,7 @@
 package com.example.assolutoRacing.api;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,10 +86,17 @@ public class UpdateUserController {
 		user.setUserName(updateUserNameBean.getUserName());
 		CustromUserDetails custromUserDetails = new CustromUserDetails(user);
 		
-		String jwtToken = jwtUtil.generateToken(custromUserDetails);
+		Date acessExp = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+		//アクセストークン
+		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp);
+		
+		Date refreshExp = new Date(System.currentTimeMillis() + 5000 * 60 * 60 * 24);
+		
+		//リフレッシュトークン
+		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp);
 		
 		UpdateUserRes updateUserRes = new UpdateUserRes();
-		updateUserRes.setAcessToken(jwtToken);
+		updateUserRes.setAcessToken(acessToken);
 		updateUserRes.setUserUpdateSucessFlag(userUpdateSucessFlag);
 
 		HttpHeaders headers = new HttpHeaders();

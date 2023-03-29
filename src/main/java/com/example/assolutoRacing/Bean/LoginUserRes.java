@@ -11,10 +11,16 @@ import lombok.Data;
 public class LoginUserRes {
 	//ユーザー名
 	private Integer userId;
+	
 	//ユーザー名
 	private String userName;
+	
 	//パスワード
 	private String password;
-	//トークン
-	private String token;
+	
+	//アクセストークン
+	private String acessToken;
+	
+	//リフレッシュトークン
+	private String refreshToken;
 }

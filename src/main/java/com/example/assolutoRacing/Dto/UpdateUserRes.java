@@ -5,8 +5,11 @@ import lombok.Data;
 @Data
 public class UpdateUserRes {
 	//ユーザー更新成功可否フラグ
-	public Boolean userUpdateSucessFlag;
+	private Boolean userUpdateSucessFlag;
 	
 	//アクセストークン
-	public String acessToken;
+	private String acessToken;
+	
+	//リフレッシュトークン
+	private String refreshToken;
 }

@@ -97,6 +97,7 @@ public class UpdateUserController {
 		
 		UpdateUserRes updateUserRes = new UpdateUserRes();
 		updateUserRes.setAcessToken(acessToken);
+		updateUserRes.setRefreshToken(refreshToken);
 		updateUserRes.setUserUpdateSucessFlag(userUpdateSucessFlag);
 
 		HttpHeaders headers = new HttpHeaders();

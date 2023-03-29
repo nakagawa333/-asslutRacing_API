@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.example.assolutoRacing.Bean.AuthUserBean;
@@ -94,8 +97,18 @@ public class LoginController{
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		String jwtToken = jwtUtil.generateToken(custromUserDetails);
-		loginUserRes.setToken(jwtToken);
+		Date acessExp = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+
+		//アクセストークンを作成
+		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp);
+		
+		Date refresgExp = new Date(System.currentTimeMillis() + 5000 * 60 * 60 * 24);
+		
+		//リフレッシュトークンを作成
+		String refreshToken = jwtUtil.generateToken(custromUserDetails,refresgExp);
+
+		loginUserRes.setAcessToken(acessToken);
+		loginUserRes.setRefreshToken(refreshToken);
 		
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<LoginUserRes> resEntity = new ResponseEntity<>(loginUserRes,headers,HttpStatus.OK); 

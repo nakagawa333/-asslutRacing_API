@@ -14,19 +14,24 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.assolutoRacing.Bean.LoginUserRes;
+import com.example.assolutoRacing.Bean.RefreshTokenReq;
 import com.example.assolutoRacing.Service.CustomUserDetailsService;
 import com.example.assolutoRacing.Service.JwtUtil;
 
 /**
- * リフレッシュトークンフィルタークラス
+ * リフレッシュトークンコントローラークラス
  * @author nakagawa.so
  *
  */
-public class RefreshTokenFilter {
+@RestController
+public class RefreshTokenController {
 	
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
@@ -35,29 +40,16 @@ public class RefreshTokenFilter {
 	private JwtUtil jwtUtil;
 	
 	@RequestMapping(path = "/refresh/token", method = RequestMethod.POST)
-	public ResponseEntity<LoginUserRes> refreshToken(HttpServletRequest httpServletRequest, 
-			HttpServletResponse httpServletResponse) throws Exception{
+	public ResponseEntity<LoginUserRes> refreshToken(@RequestBody(required = true) @Validated RefreshTokenReq refreshTokenReq) throws Exception{
 		
-		String authorizationHeader = httpServletRequest.getHeader("Authorization");
 		LoginUserRes loginUserRes = new LoginUserRes();
 		
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<LoginUserRes> resEntity = new ResponseEntity<>(loginUserRes,headers,HttpStatus.OK); 
 		
-		//リフレッシュトークン
-		String refreshToken = "";
-		
-		//ユーザー名
-		String username = "";
+		String refreshToken = refreshTokenReq.getRefreshToken();
 		try {
-			if(StringUtils.isNoneBlank(authorizationHeader) && authorizationHeader.startsWith("Basic")) {
-				//リフレッシュトークン
-				refreshToken = authorizationHeader.substring(6);
-				//ユーザー名
-				username = jwtUtil.extractUsername(refreshToken);
-			} else {
-				throw new RuntimeException("リフレッシュトークンが無効です");
-			}
+			String username = jwtUtil.extractUsername(refreshToken);
 			
 			if(StringUtils.isNoneBlank(username)) {
 				UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
@@ -71,9 +63,10 @@ public class RefreshTokenFilter {
 					String acessToken = jwtUtil.generateToken(userDetails, acessExp);
 					loginUserRes.setAcessToken(acessToken);
 				}
-			}			
+			}
+			
 		} catch(Exception e) {
-			throw e;
+			throw new RuntimeException("失敗");
 		}
 		return resEntity;
 	}

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.assolutoRacing.Bean.LoginUserRes;
 import com.example.assolutoRacing.Bean.RefreshTokenReq;
+import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Service.CustomUserDetailsService;
 import com.example.assolutoRacing.Service.JwtUtil;
 
@@ -54,7 +55,7 @@ public class RefreshTokenController {
 			if(StringUtils.isNoneBlank(username)) {
 				UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
 				
-				Date acessExp = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+				Date acessExp = Constants.TOKEN.ACESSEXP;
 
 				//暫定処理
 				if(jwtUtil.validateToken(refreshToken, userDetails)) {

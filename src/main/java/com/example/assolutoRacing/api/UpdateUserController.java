@@ -86,11 +86,11 @@ public class UpdateUserController {
 		user.setUserName(updateUserNameBean.getUserName());
 		CustromUserDetails custromUserDetails = new CustromUserDetails(user);
 		
-		Date acessExp = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+		Date acessExp = Constants.TOKEN.ACESSEXP;
 		//アクセストークン
 		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp);
 		
-		Date refreshExp = new Date(System.currentTimeMillis() + 5000 * 60 * 60 * 24);
+		Date refreshExp = Constants.TOKEN.REFRESHEXP;
 		
 		//リフレッシュトークン
 		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp);
@@ -103,13 +103,6 @@ public class UpdateUserController {
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<UpdateUserRes> resEntity = new ResponseEntity<>(updateUserRes,headers,HttpStatus.CREATED); 
 		return resEntity;
-	}
-	
-	@RequestMapping(path = "/update/user/mail", method = RequestMethod.PUT)
-	@Transactional(rollbackFor = Exception.class)
-	public ResponseEntity<Boolean> updateMail(){
-		return null;
-		
 	}
 }
 

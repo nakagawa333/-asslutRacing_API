@@ -97,15 +97,15 @@ public class LoginController{
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		Date acessExp = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+		Date acessExp = Constants.TOKEN.ACESSEXP;
 
 		//アクセストークンを作成
 		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp);
 		
-		Date refresgExp = new Date(System.currentTimeMillis() + 5000 * 60 * 60 * 24);
+		Date refreshExp = Constants.TOKEN.REFRESHEXP;
 		
 		//リフレッシュトークンを作成
-		String refreshToken = jwtUtil.generateToken(custromUserDetails,refresgExp);
+		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp);
 
 		loginUserRes.setAcessToken(acessToken);
 		loginUserRes.setRefreshToken(refreshToken);

@@ -27,7 +27,7 @@ public class WebSecurityConfig {
 	SecurityFilterChain springSecurity(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeHttpRequests()
-		.antMatchers("/select/notification","/login","/signup","/password/reset","/refresh/token").permitAll()
+		.antMatchers("/select/notification","/login","/signup","/password/reset","/refresh/token","/update/mail").permitAll()
 		.antMatchers("/select/**").permitAll()
 		.antMatchers("/verify/**").permitAll()
 		.anyRequest().authenticated()

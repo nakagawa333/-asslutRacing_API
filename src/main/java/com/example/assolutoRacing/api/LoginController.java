@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.example.assolutoRacing.Bean.AuthUserBean;
@@ -59,7 +61,10 @@ public class LoginController{
 	
 	
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public ResponseEntity<LoginUserRes> login(@RequestBody(required = true) @Validated AuthUserBean authUserBean) throws Exception{
+	public ResponseEntity<LoginUserRes> login(
+			@RequestBody(required = true) @Validated AuthUserBean authUserBean,
+			HttpServletRequest httpServletRequest
+			) throws Exception{
 			AuthUserRes user = new AuthUserRes();
 		
 		String userName = authUserBean.getUserName();
@@ -97,15 +102,17 @@ public class LoginController{
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
+		String url = httpServletRequest.getRequestURL().toString();
+		
 		Date acessExp = Constants.TOKEN.ACESSEXP;
 
 		//アクセストークンを作成
-		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp);
+		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp,url);
 		
 		Date refreshExp = Constants.TOKEN.REFRESHEXP;
 		
 		//リフレッシュトークンを作成
-		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp);
+		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp,url);
 
 		loginUserRes.setAcessToken(acessToken);
 		loginUserRes.setRefreshToken(refreshToken);

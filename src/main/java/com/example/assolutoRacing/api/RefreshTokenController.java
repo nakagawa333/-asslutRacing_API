@@ -41,7 +41,10 @@ public class RefreshTokenController {
 	private JwtUtil jwtUtil;
 	
 	@RequestMapping(path = "/refresh/token", method = RequestMethod.POST)
-	public ResponseEntity<LoginUserRes> refreshToken(@RequestBody(required = true) @Validated RefreshTokenReq refreshTokenReq) throws Exception{
+	public ResponseEntity<LoginUserRes> refreshToken(
+			@RequestBody(required = true) @Validated RefreshTokenReq refreshTokenReq,
+			HttpServletRequest httpServletRequest
+		) throws Exception{
 		
 		LoginUserRes loginUserRes = new LoginUserRes();
 		
@@ -59,9 +62,10 @@ public class RefreshTokenController {
 
 				//暫定処理
 				if(jwtUtil.validateToken(refreshToken, userDetails)) {
+					String url = httpServletRequest.getRequestURL().toString();
 					
 					//アクセストークンを新規に作成
-					String acessToken = jwtUtil.generateToken(userDetails, acessExp);
+					String acessToken = jwtUtil.generateToken(userDetails, acessExp,url);
 					loginUserRes.setAcessToken(acessToken);
 				}
 			}

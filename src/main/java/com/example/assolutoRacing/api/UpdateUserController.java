@@ -3,6 +3,8 @@ package com.example.assolutoRacing.api;
 import java.sql.SQLException;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -51,7 +53,10 @@ public class UpdateUserController {
 	 */
 	@RequestMapping(path = "/update/user/username", method = RequestMethod.PUT)
 	@Transactional(rollbackFor = Exception.class)
-	public ResponseEntity<UpdateUserRes> updateUserName(@RequestBody(required = true) @Validated UpdateUserNameBean updateUserNameBean) throws Exception {
+	public ResponseEntity<UpdateUserRes> updateUserName(
+			@RequestBody(required = true) @Validated UpdateUserNameBean updateUserNameBean,
+			HttpServletRequest httpServletRequest
+			) throws Exception {
 		int userCount = 0;
 		
 		try {
@@ -86,14 +91,16 @@ public class UpdateUserController {
 		user.setUserName(updateUserNameBean.getUserName());
 		CustromUserDetails custromUserDetails = new CustromUserDetails(user);
 		
+		String url = httpServletRequest.getRequestURL().toString();
+		
 		Date acessExp = Constants.TOKEN.ACESSEXP;
 		//アクセストークン
-		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp);
+		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp,url);
 		
 		Date refreshExp = Constants.TOKEN.REFRESHEXP;
 		
 		//リフレッシュトークン
-		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp);
+		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp,url);
 		
 		UpdateUserRes updateUserRes = new UpdateUserRes();
 		updateUserRes.setAcessToken(acessToken);

@@ -49,7 +49,6 @@ public class RefreshTokenController {
 		LoginUserRes loginUserRes = new LoginUserRes();
 		
 		HttpHeaders headers = new HttpHeaders();
-		ResponseEntity<LoginUserRes> resEntity = new ResponseEntity<>(loginUserRes,headers,HttpStatus.OK); 
 		
 		String refreshToken = refreshTokenReq.getRefreshToken();
 		try {
@@ -73,6 +72,8 @@ public class RefreshTokenController {
 		} catch(Exception e) {
 			throw new RuntimeException("失敗");
 		}
+		
+		ResponseEntity<LoginUserRes> resEntity = new ResponseEntity<>(loginUserRes,headers,HttpStatus.OK); 
 		return resEntity;
 	}
 }

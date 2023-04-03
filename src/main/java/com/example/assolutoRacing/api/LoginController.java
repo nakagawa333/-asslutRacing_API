@@ -89,7 +89,12 @@ public class LoginController{
 		try {
 			user = userService.auth(authUser);
 		} catch(Exception e) {
-			throw e;
+			throw new RuntimeException("ユーザー情報の取得に失敗しました");
+		}
+		
+		//ユーザー名orメールアドレスもしくはパスワードの条件に合致するユーザーが存在しない場合
+		if(user == null) {
+			throw new RuntimeException("ユーザー名orメールアドレス、もしくはパスワードが間違えています。");
 		}
 		
 		CustromUserDetails custromUserDetails = new CustromUserDetails(user);

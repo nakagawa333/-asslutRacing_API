@@ -10,7 +10,9 @@ public class Constants {
 	}
 	
 	public static class TOKEN{
-		public static final Date ACESSEXP = new Date(System.currentTimeMillis() + 300 * 60 * 60 * 24);
-		public static final Date REFRESHEXP = new Date(System.currentTimeMillis() + 5000 * 60 * 60 * 24);
+		//有効期限30分
+		public static final Date ACESSEXP = new Date(System.currentTimeMillis() + 30 * 60 * 1000);
+		//有効期限14日
+		public static final Date REFRESHEXP = new Date(System.currentTimeMillis() + 14 * 24 * 60 * 60 * 1000);
 	}
 }

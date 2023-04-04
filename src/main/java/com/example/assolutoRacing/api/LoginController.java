@@ -109,12 +109,12 @@ public class LoginController{
 		
 		String url = httpServletRequest.getRequestURL().toString();
 		
-		Date acessExp = Constants.TOKEN.ACESSEXP;
+		Date acessExp = new Date(Constants.TOKEN.ACESSEXP);
 
 		//アクセストークンを作成
 		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp,url);
 		
-		Date refreshExp = Constants.TOKEN.REFRESHEXP;
+		Date refreshExp = new Date(Constants.TOKEN.REFRESHEXP);
 		
 		//リフレッシュトークンを作成
 		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp,url);

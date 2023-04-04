@@ -57,7 +57,7 @@ public class RefreshTokenController {
 			if(StringUtils.isNoneBlank(username)) {
 				UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
 				
-				Date acessExp = Constants.TOKEN.ACESSEXP;
+				Date acessExp = new Date(Constants.TOKEN.ACESSEXP);
 
 				//暫定処理
 				if(jwtUtil.validateToken(refreshToken, userDetails)) {

@@ -93,11 +93,11 @@ public class UpdateUserController {
 		
 		String url = httpServletRequest.getRequestURL().toString();
 		
-		Date acessExp = Constants.TOKEN.ACESSEXP;
+		Date acessExp = new Date(Constants.TOKEN.ACESSEXP);
 		//アクセストークン
 		String acessToken = jwtUtil.generateToken(custromUserDetails,acessExp,url);
 		
-		Date refreshExp = Constants.TOKEN.REFRESHEXP;
+		Date refreshExp = new Date(Constants.TOKEN.REFRESHEXP);
 		
 		//リフレッシュトークン
 		String refreshToken = jwtUtil.generateToken(custromUserDetails,refreshExp,url);

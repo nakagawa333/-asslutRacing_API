@@ -11,8 +11,8 @@ public class Constants {
 	
 	public static class TOKEN{
 		//有効期限30分
-		public static final Date ACESSEXP = new Date(System.currentTimeMillis() + 30 * 60 * 1000);
+		public static final long ACESSEXP = System.currentTimeMillis() + 30 * 60 * 1000;
 		//有効期限14日
-		public static final Date REFRESHEXP = new Date(System.currentTimeMillis() + 14 * 24 * 60 * 60 * 1000);
+		public static final long REFRESHEXP = System.currentTimeMillis() + 14 * 24 * 60 * 60 * 1000;
 	}
 }

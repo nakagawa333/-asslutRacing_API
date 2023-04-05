@@ -57,14 +57,12 @@ public class RefreshTokenController {
 			if(StringUtils.isNoneBlank(username)) {
 				UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
 				
-				Date acessExp = new Date(Constants.TOKEN.ACESSEXP);
-
-				//暫定処理
+				//リフレッシュトークンが有効である場合
 				if(jwtUtil.validateToken(refreshToken, userDetails)) {
 					String url = httpServletRequest.getRequestURL().toString();
 					
 					//アクセストークンを新規に作成
-					String acessToken = jwtUtil.generateToken(userDetails, acessExp,url);
+					String acessToken = jwtUtil.generateAcessToken(userDetails,url);
 					loginUserRes.setAcessToken(acessToken);
 				}
 			}

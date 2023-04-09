@@ -6,15 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.assolutoRacing.Bean.AddSettingInfoBean;
-import com.example.assolutoRacing.Constants.Constants;
 import com.example.assolutoRacing.Dto.AddSettingInfoDto;
+import com.example.assolutoRacing.Service.RedisService;
 import com.example.assolutoRacing.Service.SettingInfoService;
 
 /**
@@ -27,6 +26,9 @@ import com.example.assolutoRacing.Service.SettingInfoService;
 public class AddSettingInfoController{
 	@Autowired
 	SettingInfoService settingInfoService;
+	
+	@Autowired
+	RedisService redisService;
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	@Transactional(rollbackFor = Exception.class)
@@ -70,9 +72,18 @@ public class AddSettingInfoController{
 		try {
 			insertCount = settingInfoService.insert(addSettingInfoDto);
 		} catch(Exception e) {
-			throw e;
+			throw new RuntimeException("設定情報の新規作成に失敗しました");
 		}
 		
+		if(insertCount == 0) {
+			throw new RuntimeException("設定情報の新規作成に失敗しました");
+		}
+		
+		try {
+			redisService.set(String.valueOf(addSettingInfoDto.getId()), addSettingInfo.getImgBase64Url());
+		} catch(Exception e) {
+			throw new RuntimeException("redis接続失敗");
+		}
 		//追加した設定情報が1件の場合、true
 		boolean insertSucessFlag = insertCount == 1 ? true : false;
 		

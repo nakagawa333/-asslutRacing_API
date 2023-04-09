@@ -84,4 +84,6 @@ public class AddSettingInfoBean{
 	//ユーザーid
 	@NotNull
 	private Integer userId;
+	//画像
+	private String imgBase64Url;
 }

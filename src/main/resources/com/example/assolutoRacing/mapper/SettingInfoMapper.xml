@@ -82,7 +82,8 @@
     </where>
   </update>
   
-  <insert id="insert">
+  <insert id="insert" useGeneratedKeys="true"
+    keyProperty="id">
 	insert into setting_info
 	   (title,
 		maker_id,

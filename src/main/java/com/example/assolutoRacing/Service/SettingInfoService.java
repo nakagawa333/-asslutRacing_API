@@ -48,13 +48,13 @@ public class SettingInfoService {
 	 * @return 登録件数
 	 */
 	public Integer insert(AddSettingInfoDto addSettingInfoDto) {
-		int insertCount = 0;
+		int insertId = 0;
 		try {
-			insertCount = settingInfoMapper.insert(addSettingInfoDto);
+			insertId = settingInfoMapper.insert(addSettingInfoDto);
 		} catch(Exception e) {
 			throw e;
 		}
-		return insertCount;
+		return insertId;
 	}
 	
 	/**
